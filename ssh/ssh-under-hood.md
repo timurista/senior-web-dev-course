@@ -49,3 +49,16 @@ each party to combine private with the public data to create a unique key.
 
 
 ## Hashing
+
+Client and Server use Assymetric encryption because it is more secure than ssh. They then generate a key
+and that key can be used for regular ssh (symetric encryption) since it is fast.
+
+Server generates a challenge so client can answer the challenge.
+
+But a middle man can just sit in the middle are read that information.
+
+Bcrypt never meant to decrypt anything. Just a unique value of a fixed length for any input. Hashes are useful because they let us verify integrity of messages. And we can be confident that the message cannot change.
+
+
+mapo generated from message contents, packet sequence number, etc. combined into hash function will generate string. 
+They use same symmetric key, and because message through ssh they run through hash function again and make sure it matches clients hash.
