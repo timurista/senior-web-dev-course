@@ -22,3 +22,51 @@ DOM -> CSSOM -> JS -> Render Tree -> layout -> Paint
 3. analytics may be put at top ... in general put script tags at bottom as it will load faster
 4. style tags should be at top to load asap
 
+## Optimizing CSS
+css is render blocking because we wait for css dom to complete.
+want css to be as lightweight as possible.
+  incorporate
+  media attributes
+
+1. load what you need
+
+2. above the fold loading
+  - if you are user (you only care what you see on the first page)
+  - see whatever is above the fold, optimize it
+  - only css what you need above fold
+
+above the fold (render)
+below the fold (defer rendering)
+
+you can use function in body to load css after content has rendered
+
+```js
+const loadStylesheet = src => {
+  if (document.createStylesheet) {
+    document.createStylesheet(src)
+  } else {
+    const stylesheet = document.createElement('link')
+    stylesheet.href = src
+    stylesheet.type = 'text/css'
+    stylesheet.rel = 'stylesheet'
+    document.getElementsByTagName('head')[0].appendChild(stylesheet)
+  }
+}
+
+window.onload = function() {
+  loadStylesheet('./styles3.css')
+}
+```
+
+## Media queries in html file
+css load for media queries
+
+```html
+<link rel="stylesheet" type="text/css" href="./stylesheet2.css" media="only screen and (min-width: 500px) >
+```
+
+## Less specificty
+More specificity === more bytes need to download
+small but only 2 items
+
+sometimes you can also just inject stylesheet in the DOM, but tradeoff is it will only load on one page.
