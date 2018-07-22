@@ -100,3 +100,15 @@ So media queries can take care of that for you.
 imgix, take care deliver cache and manage them for you
 
 remove metadata, https://www.verexif.com/en/
+
+
+# Optimization via Delivery Optimizations
+
+less trips, only for the code we need.
+Use natively supported stuff
+element selection has been simplified, addEvent, etc. find lightweight libraries. Think twice before you throw them on
+
+browsers will only make a certain number of max number of requests it can make
+  - limit trips the delivery man makes
+
+
