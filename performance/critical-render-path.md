@@ -70,3 +70,21 @@ More specificity === more bytes need to download
 small but only 2 items
 
 sometimes you can also just inject stylesheet in the DOM, but tradeoff is it will only load on one page.
+
+## Optimizing JS
+script file is paused and once loaded can't be executed before css is fetched. JS is parser blocking.
+
+Couple things we can do
+- load scripts asynchronously
+
+script async, we can tell browser to download js to another worker on low priority. Then when executes sitll blocks things.
+
+Could load way user page loads.
+with async add them to anything that doesn't affect dom etc. All extra scripts, analytics or tracking scripts.
+
+waits and executes until html is loaded. Defer is good if core functonality does not require javascript.
+
+## Other options
+avoid long running javascript
+modern browsers do a partial redraw. Want to minimize DOM mainpulation.
+
