@@ -114,3 +114,9 @@ browsers will only make a certain number of max number of requests it can make
 
 ## Website for monitoring performance
 `https://gtmetrix.com`
+
+
+## Keiko Website performance
+1. PageSpeed Insights
+2. WebPageTest
+
