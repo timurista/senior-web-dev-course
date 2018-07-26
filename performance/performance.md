@@ -114,3 +114,44 @@ browsers will only make a certain number of max number of requests it can make
 
 ## Website for monitoring performance
 `https://gtmetrix.com`
+
+
+## Keiko Website performance
+1. PageSpeed Insights
+2. WebPageTest
+
+html
+a number of stylesheets
+- first question, why do we need all that css
+
+- move script tags to end
+- before body
+- minimize dom manipulation
+- performance is never ending game
+- always tweak
+
+spend time wisely on thigns that matter
+do those optimization only to those points that are needed
+- key features to make it perforant
+
+`https://css-tricks.com/prefetching-preloading-prebrowsing/`
+
+`<link rel="prefetch" href="image.png">`
+
+http://optimizilla.com/
+https://tools.pingdom.com/
+
+## HTTP 2
+Protocol update which will improve network latency
+Multiplexing, binary not textual. Fully multiplex. Server push, etc. Things evolve, it will change.
+
+https://developers.google.com/web/fundamentals/performance/http2/
+
+`Premature optimization is ROOT of all evil`
+
+everything is tradeoff
+load fast, under 5 seconds. Experiment
+
+
+
+
