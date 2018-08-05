@@ -10,3 +10,9 @@ plugins --> manipulate steps in the build
 
 ## Webpack dev server
 run in local env to see in browser, need the cli to use it.
+
+## Webpack
+we create a bundler, goes through all modules. Run through babel, lint and then output to dist.
+
+And we can have this server running which runs to make sure site runs lint free.
+
