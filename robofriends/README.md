@@ -33,6 +33,25 @@ redux-saga, it's super-charged thunk
 
 if you add, ask yourself DO I need this? justify it which improves value of the product. Think of dev teams, will they benefit from this? Is frustration worth it...
 
+## What and why bundler?
+Need something to minify and maintain the javascript files into one. They can optimize images, and maximize delivery of images for the file. Webpack was doing stuff under the hood. Still want to know how things work under the hood.
+THe big three right now are parcel, webpack, and rollup.js
+
+rollupjs is good with tree shaking, throwing out code you don't need.
+
+zero config for parcel, a bit easier to get setup.
+
+- webpack most likely setup for big projects
+- parcel is small project just need to get up and going.
+- rollup is more own npm module
+
+but things change so rapidly. When you have an issue, know what it does so you can read through doc config and read through it.
+
+> time is better spent write better tests, don't spend too much time learning how to do configuration.
+
+
+
+
 
 
 
