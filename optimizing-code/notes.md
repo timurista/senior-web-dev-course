@@ -36,5 +36,6 @@ minimally functional page needed for home page. App can lazy load or unlock more
 
 production build out of box if you do npm run build does that.
 
+## React Routable
 
-
+React Loadable. An HOC for async loading components with dynamic import
