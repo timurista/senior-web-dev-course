@@ -1,6 +1,7 @@
 import React from 'react'
 
 const SearchBox = ({ onSearchChange }) => {
+  console.log('Searchbox render')
   return (
     <div className='pa2'>
       <input 
