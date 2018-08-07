@@ -6,3 +6,13 @@ You can use the /?react_perf to examine DOM nodes in chrome inspector. Using Rea
 ## Identified areas rerenderd which are unnecessary
 What can we do? Abstract away code
 
+## Tools for handling rerender
+
+- Why did you update?
+unnecessary rerender cycle
+
+## Avoid Memory Leaks
+
+## Tree shaking
+
+## Avoid Multiple re-rendering
