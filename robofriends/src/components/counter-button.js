@@ -10,7 +10,10 @@ class Header extends Component {
   }
 
   shouldComponentUpdate() {
-    return true;
+    if (this.this.state.count !== nextState.count) {
+      return true
+    }
+    return false;
   }
   render() {
     console.log('CounterButton')
