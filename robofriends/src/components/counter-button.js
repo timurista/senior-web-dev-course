@@ -9,7 +9,7 @@ class Header extends Component {
     this.setState(state => ({ count: state.count + 1}))
   }
 
-  shouldComponentUpdate() {
+  shouldComponentUpdate(nextState) {
     if (this.this.state.count !== nextState.count) {
       return true
     }
