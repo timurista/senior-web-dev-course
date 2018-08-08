@@ -14,5 +14,7 @@ unnecessary rerender cycle
 ## Avoid Memory Leaks
 
 ## Tree shaking
+https://developers.google.com/web/fundamentals/performance/optimizing-javascript/tree-shaking/
+
 
 ## Avoid Multiple re-rendering
