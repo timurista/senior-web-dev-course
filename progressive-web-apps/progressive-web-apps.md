@@ -39,3 +39,15 @@ splash screens, and download banner. App manifest is that in index.html viewport
 
 ## favicon generator
 https://realfavicongenerator.net/favicon_result?file_id=p1ckcspregpfc1s0i175l1lfr1hi56#.W2r1E9hKhTY
+
+## Precaching
+Add service worker precache
+`yarn add sw-precache`
+
+then sw-precache-config.js
+`https://github.com/jeffposnick/create-react-pwa/compare/starting-point...pwa`
+
+https://jakearchibald.github.io/isserviceworkerready/
+
+
+
