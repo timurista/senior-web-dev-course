@@ -8,15 +8,24 @@ const dbMock = [
 ];
 
 // dependency injection, inject DB here by altering googleSearch function
-
-it('returns empty array if result is not found', () => {
-  expect(googleSearch('hello', dbMock)).toEqual([])
-})
-
-it('returns array of dogs when dog is passed in', () => {
-  console.log(googleSearch('dog', dbMock));
-  expect(googleSearch('dog', dbMock)).toEqual([
-    'dog.com',
-    'dogpictures.com'
-  ])
+describe('googleSearch', () => {
+  it('returns empty array if result is not found', () => {
+    expect(googleSearch('hello', dbMock)).toEqual([])
+  })
+  
+  it('returns array of dogs when dog is passed in', () => {
+    expect(googleSearch('dog', dbMock)).toEqual([
+      'dog.com',
+      'dogpictures.com'
+    ])
+  })
+  
+  it('work with undefined or null', () => {
+    expect(googleSearch(undefined, dbMock)).toEqual([])
+    expect(googleSearch(null, dbMock)).toEqual([])
+  })
+  
+  it('does not return more than 3 matches', () => {
+    expect(googleSearch('.com', dbMock)).toHaveLength(3)
+  })
 })
