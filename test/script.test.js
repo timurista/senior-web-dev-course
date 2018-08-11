@@ -8,7 +8,6 @@ const dbMock = [
 ];
 
 // dependency injection, inject DB here by altering googleSearch function
-
 describe('googleSearch', () => {
   it('returns empty array if result is not found', () => {
     expect(googleSearch('hello', dbMock)).toEqual([])
