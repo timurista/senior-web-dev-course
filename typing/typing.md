@@ -49,7 +49,3 @@ when to use static typing
 - code to be self-documenting
 - budget for new people to learn things
 
-
-
-
-
