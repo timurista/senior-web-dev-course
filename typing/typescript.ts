@@ -67,5 +67,29 @@ let fightRobotArmy = (robots: RobotArmy) => {
 // interface is a new name to be used anywhere
 // interface is cleaner syntax
 
+// type assertion
+const army = {} as RobotArmy;
+army.magic = 'fireball';
 
+// Function
+const myFn = (robots: RobotArmy): void => {
+  console.log('fight on again')
+}
 
+// Class
+class Animal {
+  private sing: string = 'lalalal';
+  constructor(sound: string) {
+    this.sing = sound;
+  }
+
+  greet() {
+    return `Hello ${this.sing}`;
+  }
+}
+
+let lion = new Animal('RAAAWR');
+console.log(lion.greet());
+
+// union type |
+let confused: string | number = 'abc123';
