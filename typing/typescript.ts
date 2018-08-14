@@ -38,6 +38,34 @@ let sizeName: string = Size[2];
 // enums let us to define set of named constants
 // directions, or value associated with it
 
+// Any, be careful... use it right when using it
+let whatever: any = 'agghhh no!!!';
+whatever = 5;
+whatever = true;
+whatever = Size.small;
+
+// useful for when converting js objects to typescript
+// and this will take a long time
+
+// never
+let error = (): never => {
+  throw Error('oops');
+};
+
+// interface
+interface RobotArmy {
+  count: number,
+  type: string,
+  magic: string,
+}
+
+let fightRobotArmy = (robots: RobotArmy) => {
+  console.log('fight');
+}
+
+// interface vs type
+// interface is a new name to be used anywhere
+// interface is cleaner syntax
 
 
 
