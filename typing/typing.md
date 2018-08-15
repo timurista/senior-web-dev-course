@@ -49,3 +49,16 @@ when to use static typing
 - code to be self-documenting
 - budget for new people to learn things
 
+## Declaration type -- DefinietlyTyped.org
+type search like react
+@types/react gives us declaration so typescript compiler understands react.
+
+You have mouse event, keyboard event, etc.
+
+This file was downloaded through definitely-typed. Community created declaration files. Can use react as if they were written in typescript.
+
+A lot of complexity here.
+And hoping things are kept up to date.
+
+
+
