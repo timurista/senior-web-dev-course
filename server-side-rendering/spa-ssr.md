@@ -45,6 +45,12 @@ Holds up event loop --- need to orchestrate this better
 Number of requests to server is greater
 Website may look faster, but might not be faster in terms of user interaction
 
+## Server side rendering
+Gatsby and Nextjs
+
+Gatsby is great for static sites.
+Great for documentation and blogs
+HMR, prefetching etc.
 
 
 
