@@ -39,3 +39,5 @@ Parametrize Queries
 Example of sql injection
 https://www.hacksplaining.com/exercises/sql-injection
 
+## Logging
+For logging packages you can use morgan for tiny output and winston
