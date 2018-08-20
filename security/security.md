@@ -41,3 +41,15 @@ https://www.hacksplaining.com/exercises/sql-injection
 
 ## Logging
 For logging packages you can use morgan for tiny output and winston
+- note for logging you should limit the kind of requests you are sending out.
+
+## HTTPS everywhere
+when you send info from client to server, tunnel known as https for secure. Encrypts info between client and server.
+
+some ways to accidentally setup server without it.
+
+## Let's Encrupt
+letsencrypt.org
+https certificate. Cloudflare global network of servers, really good. Be default they give you https. Added benefit against DDOS. 
+
+use https make sure it is encrypted
