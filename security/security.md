@@ -88,3 +88,24 @@ Secure + HTTPOnly COokies
 ## csurf package
 install, require
 
+## Code Secrets
+Environmental Variables
+and Commit History
+
+NODE_ENV default environment variables default we get NODE_ENV in development or production mode.
+
+In create react app you can add your own .env file with variables that need to be prepended with `REACT_APP` so `REACT_APP_SECRET_KEY`
+
+## DotEnv
+`DB_HOST`
+process.env.DB_HOST
+npm install dotenv
+
+Github has a commit history
+-- never want to put up secret files.
+Always use .gitignore file.
+
+
+example look for commit `remove password`
+code secrets, hide them protect them.
+
