@@ -53,3 +53,38 @@ letsencrypt.org
 https certificate. Cloudflare global network of servers, really good. Be default they give you https. Added benefit against DDOS. 
 
 use https make sure it is encrypted
+
+## Cross site scripting XSS
+allows attacker to execute scripts in victims browser
+run code to different sites from my browser. Stealing 
+server that just logs peoples cookies. So I can steal it, session hijacking. You have to sanitize inputs to prevent.
+
+## CSRF
+cross site
+Client has tunnel when communicating, which gets profile from server. Weather from 3rd party api tunnel. But XSS they can steal users session. But CSRF they create bad url in spam emails. You can do it with post requests and iframe. To fix this, we need to 
+
+## Express Set headers
+```js
+res.set({
+  'Content-Secuirt-Policy': "script-src 'self' 'http://google.com'"
+})
+
+res.cookie('session', '1', 
+  { httpOnly: true }, 
+  { secure: true }
+)
+```
+
+most time this will be done automatically.
+Also make sure document.cookie, savin the cookie as session id.
+
+## Avoid
+no eval()
+document.write('...') // 
+document.innerHtml
+CSP
+Secure + HTTPOnly COokies
+
+## csurf package
+install, require
+
