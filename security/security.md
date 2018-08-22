@@ -131,4 +131,15 @@ Access to only people we trust. CorsOptions, we check whitelist of domains. Orig
 Principle of LEAST PRIVILEGE
 only just right amount
 
+## Data Management
+encrypting data at rest is pretty infeasible.
+when sending data from server to client, https used in that case.
 
+Use encryption for anything like access tokens, email, billing. 
+
+## Hashing passwords
+and how to encrypt your data.
+pgcrypto, postgress db. Encrypt billing address or user column sensitive info.
+
+Password storage really cool
+What should you do with passwords?
