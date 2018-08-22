@@ -109,3 +109,13 @@ Always use .gitignore file.
 example look for commit `remove password`
 code secrets, hide them protect them.
 
+## Headers
+
+To have secure headers, install `helmet`
+`npm install helmet`
+helps secure app by setting various headers
+
+`app.use(helmet())` < this secures header
+you don't expose x-powered by
+strict-transport-security etc.
+`react-helmet-async` for concurrency
