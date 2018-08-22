@@ -119,3 +119,16 @@ helps secure app by setting various headers
 you don't expose x-powered by
 strict-transport-security etc.
 `react-helmet-async` for concurrency
+
+## Access Control
+Principle of least privelege give only enough so people can do their work.
+
+## CORS
+Cross Origin Resource Sharing. Access server stuff. Only certain domain can send secrets. By adding CORS, let this cross origin resource sharing happen.
+
+Access to only people we trust. CorsOptions, we check whitelist of domains. Origin that checks this whitelist.
+
+Principle of LEAST PRIVILEGE
+only just right amount
+
+
