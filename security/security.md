@@ -151,4 +151,10 @@ maybe we need ratelimiter, so you can't bombard server.
 
 any time connection to outside world, think about how to prevent bad actors from doing bad things.
 
+## Authentication
+session based, token based authentication. Make sure passwords match and users say who they say they are. You give this person a cookie or token they can manage authentication with.
+
+security guideline.
+
+
 
