@@ -143,3 +143,12 @@ pgcrypto, postgress db. Encrypt billing address or user column sensitive info.
 
 Password storage really cool
 What should you do with passwords?
+
+## Security 101: Dont trust anyone
+anywhere user input, url paths, cookies, etc. form fields. Any process between systems there is a bad actor. So don't trust anyone.
+
+maybe we need ratelimiter, so you can't bombard server.
+
+any time connection to outside world, think about how to prevent bad actors from doing bad things.
+
+
