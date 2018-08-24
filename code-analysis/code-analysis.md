@@ -14,3 +14,9 @@ First thing programmers do is they come and criticize and try to clean it up. Ye
 ## Humility
 look at code nuetrally without criticism. Will make it easier to work with your team.
 
+## Big Picture Focus
+When you get a feature request, always look at larger structure of the app. Get an idea of what it is doing, then start narrowing down things and looking at smaller details. Until you get that feature you might want to improve.
+
+### Tips
+Also use console.log  to experiment and understand how the entire system works. 
+
