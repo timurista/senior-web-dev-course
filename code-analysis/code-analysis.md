@@ -21,4 +21,4 @@ When you get a feature request, always look at larger structure of the app. Get 
 Also use console.log  to experiment and understand how the entire system works. 
 
 ## Summary
-Start from the top and get a high level view of the application and how it works.
+Start from the top and get a high level view of the application and how it works. Understandg the BIG picture. Then look at code one by one.
