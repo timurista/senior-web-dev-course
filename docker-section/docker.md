@@ -14,4 +14,11 @@ Docker hub is like npm, store-like website to download and use. Node image to us
 
 small services to duplicate so we can grow with it.
 
+## Why the hassle of Docker?
+Ensure that same version of node, postgres, and other services are used consistently on each developers machine. Containers let us run piece of software everywhere. We can share that code with anyone and that will work properly.
+DOcker build, run, exec commands to run docker. Now we can run the distributed application from one single command. We can link them and do port forwarding and connect these 2 pieces together. And some fun things with SQL.
+
+Docker also lets us wrap single services in container and we can keep duplicating these services and we don't have to worry about managing everything.
+
+
 
