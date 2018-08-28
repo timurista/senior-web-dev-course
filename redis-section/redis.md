@@ -31,3 +31,51 @@ https://redis.io/commands
 127.0.0.1:6379> get session
 (nil)
 ```
+
+`MSET - sets multiple`
+`MGET - gets multiple`
+
+redis handles simple string
+5 major datatypes
+1) string
+2) hashes
+3) lists
+4) sets
+5) sorted sets
+
+## hashes === js objects
+
+```bash
+127.0.0.1:6379> hmset user id 45 name "johnny"
+OK
+127.0.0.1:6379> hget user name
+"johnny"
+127.0.0.1:6379> hgetall user
+1) "id"
+2) "45"
+3) "name"
+4) "johnny"
+```
+you now have a hashed object "user" with id, name. hm is hash multiple.
+
+## Linked Lists
+Insertion really fast, but searching for key is not as fast.
+
+```bash
+127.0.0.1:6379> lpush ourlist 10
+(integer) 1
+127.0.0.1:6379> rpush ourlist "hello"
+(integer) 2
+127.0.0.1:6379> get ourlist
+(error) WRONGTYPE Operation against a key holding the wrong kind of value
+127.0.0.1:6379> lrange ourlist 0 1
+1) "10"
+2) "hello"
+127.0.0.1:6379> lpush ourlist 55
+127.0.0.1:6379> lrange ourlist 0 1
+1) "55"
+2) "10"
+127.0.0.1:6379> rpop ourlist
+"hello"
+```
+rpop to pop on right hand side
