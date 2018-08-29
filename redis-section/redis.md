@@ -79,3 +79,38 @@ Insertion really fast, but searching for key is not as fast.
 "hello"
 ```
 rpop to pop on right hand side
+
+## Sets
+no duplicates
+```bash
+127.0.0.1:6379> sadd ourset 1 2 3 4 5
+(integer) 5
+127.0.0.1:6379> smembers ourset
+1) "1"
+2) "2"
+3) "3"
+4) "4"
+5) "5"
+127.0.0.1:6379> sadd ourset 1 2 3 4 # No duplicates
+(integer) 0
+127.0.0.1:6379> smembers ourset
+1) "1"
+2) "2"
+3) "3"
+4) "4"
+5) "5"
+127.0.0.1:6379> sadd ourset 6 
+(integer) 1
+127.0.0.1:6379> smembers ourset
+1) "1"
+2) "2"
+3) "3"
+4) "4"
+5) "5"
+6) "6"
+127.0.0.1:6379>
+```
+
+sorted sets with zadd, `zadd team 50 "wizards"`
+
+fast db that stores a lot of users and has some easy to use datatypes.
