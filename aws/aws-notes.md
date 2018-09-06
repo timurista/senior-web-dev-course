@@ -24,4 +24,17 @@ cdn service to serve resources locally.
 manage scaling of key value storage, then you can access that with key. Many are using dynamoDB in IOT etc.
 
 ## AWS flow
+Befoer you had monolithic code base that did everything. But with docker and aws, you can better split things out into microservices.
 
+How you have small pieces you can release to prod one at a time. Here you can have small teams that worry about their one machine and service and make sure that is really good.
+
+SLA, and they respond in this way. Then these massive companies can work more efficiently.
+
+## AWS EC2
+we are being charged even if no one is using it. And we are being charged for security, etc. As our usage scales we need to make sure our server adapts to it and when not used it isn't costing us.
+
+## Amazon lambda -- Serverless
+We hand cloud provider stuff and they charge us for only what they use. Cloud provider can add more servers for holiday shopping etc. Code is running in a secure env.
+
+## Functions
+WHen a user makes a request then it does a fetch call and we upload the code to amazon lambda. Cloud makes a container and it runs the function. Cold start problem, it takes time to spin up container.
