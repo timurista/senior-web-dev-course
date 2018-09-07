@@ -9,3 +9,7 @@ Helps with serverless architecture.
 Means you don't have to worry about scaling etc.
 
 `npm install serverless -g`
+
+## Serverless
+alows you to hook into various events through yaml configuration.
+You can connect to s3, setup scheduling, etc.
