@@ -19,3 +19,15 @@ How do we cache these things ourself?
 ## Busting the Cache
 npm run build, it makes optimized gzipped file.
 We get main js and main css file. If you name it using version controls, then it will get grabbed ie busted from cache no matter what.
+
+## 304 not mofidied
+e-tag when it says nothing has modified through this file.
+
+## Caching via set headers
+Using headers from express, cache control. Resource with max age. Send response with new buffer.
+`res.header('Cache-Control', 'public, max-age=86400')`. Caching implemented at all levels, most likely will start at FE. Like service worker, etc. Only add this if we have good metrics to know it will improve the app.
+`https://medium.freecodecamp.org/the-hidden-components-of-web-caching-970854fe2c49`
+
+https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching
+
+https://devcenter.heroku.com/articles/increasing-application-performance-with-http-cache-headers
