@@ -8,3 +8,14 @@ it can cache db requests. Node server in redis stored in memory so next time ser
 
 ## Browser caching
 Browsers also cache information.
+
+## service workers
+intercept path and return it.
+Activation cache (app storage)
+saved in browser. INdexedDB mini db in browser.
+
+How do we cache these things ourself?
+
+## Busting the Cache
+npm run build, it makes optimized gzipped file.
+We get main js and main css file. If you name it using version controls, then it will get grabbed ie busted from cache no matter what.
