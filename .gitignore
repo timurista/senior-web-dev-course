@@ -4,6 +4,7 @@ robofriends/.gitignore
 
 # dependencies
 robofriends/node_modules
+load-balancer/node_modules
 
 # testing
 robofriends/coverage
