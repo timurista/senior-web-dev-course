@@ -27,6 +27,17 @@ Readabiliy does that matter?
 ## Problem with Time
 different machines record diff times. Time you get will be different. Margins and measurements will be different. And same machine will record different times. And fast algorithms might not be good enough to tell which one is better.
 
+## Not time, then operatins to do
+count number of operations to run.
+n * (n + 1) / 2
+3: operations, *, +, /
+n in loop, so it's not one operation it's n operations / additions.
+All that matters is general growth of algorithm.
+
+## Big O
+formalized fuzzy counting. Relationship of how Runtime grows as input size grows.
+`O(f(n))`, f(n) input and runtime
+
 
 
 
