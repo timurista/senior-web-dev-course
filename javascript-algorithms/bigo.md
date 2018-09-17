@@ -45,5 +45,21 @@ or something different
 ## Big picture
 We drop off constants and care about shape of n, order of magnitude. So as n grows by constant increasing factor we say O(n). However for nested for loops, we get O(n^2) as you do operations of n * n inside the outer and inner for loop.
 
+## Counting is hard to do
+Simplifying Big O expressions
+Rules of thumb
+1) constants don't matter
+2) o 500 is o(1)
+
+Smaller terms don't matter
+O(n^2 + 5n + 8)
+really just n^2 at level of 5biliion
+
+arithmetic is constant
+variable assignment is constant
+accessing elements in array is constant
+look, complexity is length of loop * complexity of whatever happens inside the loop
+
+
 
 
