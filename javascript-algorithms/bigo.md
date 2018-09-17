@@ -37,8 +37,13 @@ All that matters is general growth of algorithm.
 ## Big O
 formalized fuzzy counting. Relationship of how Runtime grows as input size grows.
 `O(f(n))`, f(n) input and runtime
+linear
+quadratic
+contstant
+or something different
 
-
+## Big picture
+We drop off constants and care about shape of n, order of magnitude. So as n grows by constant increasing factor we say O(n). However for nested for loops, we get O(n^2) as you do operations of n * n inside the outer and inner for loop.
 
 
 
