@@ -106,4 +106,11 @@ function subtotals(array) {
 ```
 this has O(n) since you add a new array each time you run this function as you make an array of the same size as original array which can be length n.
 
+## Logarithms
+
+inverse of exponentiation. Log_2(8) = 3. 2 to what power is 8?. It's 3. 2^3 = 8. Big picture, log === log_2 for our purposes. Number of times you can divide by (base) 2 until you get 1.
+log(8) => 3, since `8, 4, 2, 1` takes 3 divisions of 2 to get to 1.
+
+## Who cares about logarithms?
+Efficient sorting algorithms involve logs. Recursion. Etc. care about this.
 
