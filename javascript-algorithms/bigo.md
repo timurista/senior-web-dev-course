@@ -60,6 +60,50 @@ variable assignment is constant
 accessing elements in array is constant
 look, complexity is length of loop * complexity of whatever happens inside the loop
 
+## Space Complexity
+AS n, grows size of input grows. Auxiliary space complexity... the space taken up by the algorithm itself. Not the complexity of the input size.
 
+Most primitives are constant space.
+
+Strings require O(n) where n is string length
+
+Arrays and reference types, objects. O(n). Twice as much space
+
+Example
+
+```js
+function sum(arr) {
+  let total = 0;
+  for (let i = 0; i < arr.length; i++) {
+    total += arr[i]
+  }
+  return total;
+}
+```
+Constant space, O(1) space. Constant space
+
+```js
+function logUpTo(n) {
+    for (var i = 1; i <= n; i++) {
+        console.log(i);
+    }
+}
+```
+this has an O(1) space complexity because it is not allocating new arrays inside the function. It just uses a primitive and prints that out. On each iteration of the for loop no new variable is added, only incremented.
+
+```js
+function subtotals(array) {
+    var subtotalArray = Array(array.length);
+    for (var i = 0; i < array.length; i++) {
+        var subtotal = 0;
+        for (var j = 0; j <= i; j++) {
+            subtotal += array[j];
+        }
+        subtotalArray[i] = subtotal;
+    }
+    return subtotalArray;
+}
+```
+this has O(n) since you add a new array each time you run this function as you make an array of the same size as original array which can be length n.
 
 
