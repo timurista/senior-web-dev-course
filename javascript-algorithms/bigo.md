@@ -134,4 +134,28 @@ But searching you have to look through it sequentially.
 
 hasOwnProperty is constant time O(1)
 
+## Arrays
+ordered lists
+use when you need to preserve order.
+
+access is o of 1, still very quick
+insertion pushing is o of 1 is constant time
+
+problem comes when trying to get at beginning of array
+
+adding at end of array is most efficient
+adding at beginning requires you shift index for other elements.
+
+built in array methods
+
+push o 1
+pop o 1
+shift o n
+unshit o n
+concat o n
+concat o n
+slice o n
+splice o n
+sort o n * nlogn
+for each map o n
 
