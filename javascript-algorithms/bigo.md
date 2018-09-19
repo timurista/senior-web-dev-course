@@ -114,3 +114,24 @@ log(8) => 3, since `8, 4, 2, 1` takes 3 divisions of 2 to get to 1.
 ## Who cares about logarithms?
 Efficient sorting algorithms involve logs. Recursion. Etc. care about this.
 
+## Objects
+when you need fast access and don't care about the order of results returned
+
+BigO of objects / hashmaps
+insertion O(1)
+removal O(1)
+searching O(n)
+access O(1)
+
+no beginning no end, so doesn' matter where you begin accessing it.
+
+But searching you have to look through it sequentially.
+
+
+// Object.keys of o(n)
+// Object.entries o(n)
+
+
+hasOwnProperty is constant time O(1)
+
+
