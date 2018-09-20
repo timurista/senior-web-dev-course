@@ -57,4 +57,50 @@ write a function which takes two numbers and returns their sum.
     add, num1, num2
 
 ## Explore Examples
+Concrete Examples
+generate examples for sanity checks
+
+User Stories
+  - what does user experience
+Unit tests
+  - layout how a thing should work
+
+Start with simple examples
+- write 2-3 simple examples with input and output
+- progress to complex examples
+- examples with empty inputs
+- examples with invalid inputs
+
+## Problem 1
+write a function which takes a string and returns counts of each character in the string.
+
+examples
+assumption: character in string is anything alphanumeric or utf8 encoded. `/u8a` is 1 character like `a` and `+`
+
+and -> returns a count of 3 (a, n, d)
+ana -> returns a count of 3 (a, n, a)
+b -> returns a count of 1 (b)
+
+## Complex examples?
+"my phone number is 122233"
+"Hi, Hello"
+
+## empty
+"" -> returns a count of 
+undefined or null evaluates to "" and return 0
+" " -> spaces, or numbers? Uppercase and or lowercase?
+
+## edge cases / invalid
+what if string is too large?
+  return 0?
+what if not a string?
+  convert to unicode representation and count
+
+should every letter be there?
+  maybe we set the object to a list of alphanumeric codes
+  O(1)
+  then do lookups and updates which are fast
+
+
+
 
