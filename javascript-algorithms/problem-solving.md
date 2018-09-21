@@ -121,5 +121,95 @@ function charCount(str) {
 
 formulated an approach above
 
+## Solve or Simplify
+Might feel good about 80% maybe not 20%
+solve a simpler problem. Ignore part giving you a hard time to focus on everything else.
 
+Have something to show for it.
+If you know A place to start, just go for it.
 
+## Simplify
+Find core difficulty in the thing you are trying to do.
+ignore that difficulty, then incorporate it back in.
+how to handle for 1 character. Find pattern, or start with loop and then at end go back. Lowercase everything to begin with.
+
+```js
+function charCount(s) {
+    var counts = {}
+    for (var i = 0; i<s.length; i++) {
+        var char = s[i].toLowerCase()
+        // filter only alphanumeric
+        var isAlphaNumeric = /![a-z0-9]/g;
+        // option 1 long array
+        // option 2 regex
+        // ascii codes
+        
+
+        if (counts[char]) {
+            counts[char] ++
+        } else {
+            counts[char] = 1
+        }
+    }
+    return counts;
+}
+
+console.log(charCount('Hi There'))
+```
+above we are 80% of the way there, but it helps to break down and solve easy cases and then leave the harder parts for later.
+
+## Look Back and Refactor
+You are not done. Look at individual components. Balance between efficiency and legibility.
+Ask these questions out loud.
+
+Is this ideal. I would google if there is a faster way. Check results, derive result differently?
+
+Can you use this to solve another problem. Unlock solution to another problem on a different
+
+Can you improve the performance of your solution?
+
+can you think of other ways to refactor?
+
+how have other people solved this problem?
+
+Its worth analyzing your code and thinking about it
+
+### Final Solution
+```js
+function charCount(s) {
+    var counts = {}
+    for (var char of s) {
+        char = char.toLowerCase()
+        if (/[a-z0-9]/.test(char)) {
+            if (counts[char]) {
+                counts[char] ++
+            } else {
+                counts[char] = 1
+            }
+        }
+
+    }
+    return counts;
+}
+
+console.log(charCount('Hi There!'))
+```
+
+you can replace this
+```js
+if (/[a-z0-9]/.test(char)) {
+    if (counts[char]) {
+        counts[char] ++
+    } else {
+        counts[char] = 1
+    }
+}
+```
+
+with this
+```js
+if (/[a-z0-9]/.test(char)) {
+    counts[char] = ++counts[char] || 1;
+}
+```
+ask questions about how to improve.
