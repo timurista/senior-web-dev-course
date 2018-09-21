@@ -101,6 +101,25 @@ should every letter be there?
   O(1)
   then do lookups and updates which are fast
 
+## Break it Down
+little comments as a guide for steps to take. Communicate what you are doing to interviewer.
+
+Think about code BEFORE you write it.
+
+given the problem above, you might break it down like this:
+
+```js
+function charCount(str) {
+  // make object to return at end
+  // loop over string
+    // if char is a number/letter and key in object add 1 to count
+    // if key is number/letter and not in object
+      // add it and set to 1
+  // return object
+}
+```
+
+formulated an approach above
 
 
 
