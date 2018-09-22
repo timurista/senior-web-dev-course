@@ -39,3 +39,25 @@ function sumZero(arr) {
 console.log(sumZero([-4,-3,-2,-1,0,1,2,3,10]))
 ```
 Above, you move pointer left and right checking if those things sum to 0. If they do, then you exit and you are done.
+
+## 2 Pointers Lookahead
+countUnique example
+
+countUniqueValues([1,1,1,1,1,2]) // 2 unique numbers
+
+here's solution
+```js
+function countUniqueValues(arr) {
+    if (!arr.length) return 0;
+    let i = 0;
+    let j = 1;
+    while (j < arr.length) {
+      if (arr[i] === arr[j]) {
+        j++;
+      } else {
+        i++;
+        arr[i] = arr[j]; 
+      }
+    }
+    return i + 1;
+}```
