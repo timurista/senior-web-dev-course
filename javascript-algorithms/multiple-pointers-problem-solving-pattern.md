@@ -113,3 +113,67 @@ function maxSubarraySum(arr, num) {
     return maxSum;
 }
 ```
+
+## Divide and Conquer
+pattern involves taking larger set of data, array and start by dividing it into smaller pieces then divide into smaller chunks.
+
+## Search
+Binary Search, has to be sorted. What you do is work your way in by dividing the problem into smaller sub sections.
+
+## Frequency Counter Example 1
+```js
+function sameFrequency(a, b){    
+  if (a.toString().length !== b.toString().length) return false;
+
+  let freq = {}
+  
+  for (let d of a.toString()) {
+      freq[d] = ++freq[d] || 1
+  }
+  for (let d2 of b.toString()) {
+      if (freq[d2]) {
+          if (freq[d2] === 0) return false
+          freq[d2]--
+      } else {
+          return false;
+      }
+  }
+  return true;
+}
+
+
+// we check that frequency of digits is same between digit a and digit b
+console.log(sameFrequency(182,281))
+console.log(sameFrequency(34,14))
+console.log(sameFrequency(3589578,5879385))
+console.log(sameFrequency(22,222))
+```
+
+## Frequency counter mult pointers
+```js
+function areThereDuplicates() {
+  const seen = {}
+  let i = 0;
+  let j = arguments.length;
+
+  while (i < j) {
+      let arg1 = arguments[i];
+      let arg2 = arguments[j];
+
+      if(seen[arg1]) return true;
+      seen[arg1] = 1
+
+      if(seen[arg2]) return true;
+      seen[arg2] = 1
+
+      i++;
+      j--;
+  }
+  return false;
+}
+
+// we check if arg1 has been seen and we increment i from the right and j from the left
+// until they overlap i > j
+console.log(areThereDuplicates(1,2,3))
+console.log(areThereDuplicates(1,2,2))
+```
