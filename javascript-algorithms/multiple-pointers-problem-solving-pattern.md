@@ -60,4 +60,56 @@ function countUniqueValues(arr) {
       }
     }
     return i + 1;
-}```
+}
+
+//shorter
+function countUniqueValues(arr) {
+    if (!arr.length) return 0;
+    let i = 0;
+    for (let j = 1;  j < arr.length; j ++) {
+      if (arr[i] !== arr[j]) {
+        i++;
+        arr[i] = arr[j]; 
+      }
+    }
+    return i + 1;
+}
+```
+
+## Sliding Window
+Continuos String
+"hellothere"
+Finding a longest string of unique characters
+single variable we slide it up from left to right.
+
+Useful when keeping track of subst of data in larger data.
+
+Keep value of the first three
+then just subtract or add 
+
+## Looking for continous subset
+We take a window and look behind and ahead. Max sum of n elements in the array. The window is the starting range or sum of elements and then we append and remove values to it.
+
+```js
+function maxSubarraySum(arr, num) {
+    let maxSum = 0;
+    let tempSum = 0;
+    if (arr.length < num) return null;
+    
+    for (let i = 0; i < num; i ++) {
+        maxSum += arr[i]; // basically go through and set initial max sum to the first block or window in our array.
+    }
+    tempSum = maxSum;
+    for( let i = num; i < arr.length; i ++) {
+        // [2,3,4,5]
+        // where [2,3,4] is initial block
+        // we make 1 window that push in new value and 
+        // removes old value from it
+        // [3,4,5] is the new block
+        // and we do this by just adding 
+        tempSum = tempSum - arr[i - num] + arr[i];
+        maxSum = Math.max(maxSum, tempSum)
+    }
+    return maxSum;
+}
+```
