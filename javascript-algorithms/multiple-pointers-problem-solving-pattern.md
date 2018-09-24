@@ -200,3 +200,27 @@ function averagePair(arr, avg) {
 
 averagePair([1,2,3], 2.5)
 ```
+
+## isSubsequence Check
+
+The key to this one is to notice that you first return if there is no string. But as you go through you check that the character in position matches next character in j. You keep looping over j until you find that the next character in first string matches the character in j.
+
+abc ===> a,d,e,f,*b*,s,*c*
+we keep incrementing j until we have come to the end of the list or we have iterated over the fist substring.
+
+otherwise no match is found and we return false
+
+```js
+function isSubsequence(str1, str2) {
+    let i = 0;
+    let j = 0;
+    if (!str1) return true
+    while (j < str2.length) {
+        if (str1[i] === str2[j]) i++
+        if (i === str1.length) return true
+        else j++
+    }
+    return false
+}
+```
+
