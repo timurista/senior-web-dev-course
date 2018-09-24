@@ -172,8 +172,31 @@ function areThereDuplicates() {
   return false;
 }
 
+// another solution one line
+function areThereDuplicates() {
+  return new Set(arguments).size !== arguments.length;
+}
+
 // we check if arg1 has been seen and we increment i from the right and j from the left
 // until they overlap i > j
 console.log(areThereDuplicates(1,2,3))
 console.log(areThereDuplicates(1,2,2))
+```
+
+## Multiple Pointers AVG
+```js
+function averagePair(arr, avg) {
+    if (!arr.length) return false;
+    let start = 0;
+    let end = arr.length - 1
+    while (start < end) {
+        let avg2 = (arr[start] + arr[end]) / 2;
+        if (avg2 === avg) return true; // if avg are same return true
+        else if (avg2 < avg ) start ++; // [1,2,3] if avg of 1 and 3 is less than avg then increase start
+        else end--; // if the avg of [1,2,3] of 1,3 is too big, then decrease the end. And end if they overlap
+    }
+    return false;
+}
+
+averagePair([1,2,3], 2.5)
 ```
