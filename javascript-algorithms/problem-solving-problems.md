@@ -80,3 +80,27 @@ function validAnagram(str1, str2) {
     return true;
 }
 ```
+
+## MaxSubArrayLen
+
+```js
+function maxSubarraySum(arr, len){
+  if (arr.length < len) return null;
+
+  let maxSum = 0;
+  let possibleSum = 0;
+  for (let i = 0; i < len; i++) {
+      maxSum += arr[i] 
+      possibleSum += arr[i]
+  }
+
+  for (let i = len; i < arr.length; i++) {
+      possibleSum = possibleSum - arr[i-len] + arr[i];
+      if (possibleSum > maxSum) maxSum = possibleSum;
+  }
+  return maxSum;
+}
+
+console.log(maxSubarraySum([100,200,300,400], 2));
+console.log(maxSubarraySum([1,4,2,10,23,3,1,0,20], 4))
+```
