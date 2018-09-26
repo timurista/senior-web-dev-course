@@ -30,3 +30,29 @@ function countDown(num) {
   num --;
   countDown(num);
 }
+```
+
+## Where do things go wrong?
+no base case. Max size of 10k or something.
+We could return wrong thing or fail to return entirely;
+
+## Design pattern - Helper method recursion
+we define a recursive method with the result or array to modify outside of it.
+
+```js
+function f() {
+  let result = []
+
+  function helper(input) {... return helper(input.splice(1))}
+
+  helper(result);
+
+  return result;
+}
+```
+
+## Pure method recursion
+you concat to empty arrays
+first array1 = array[1]
+array1.concat(array.slice(1))
+
