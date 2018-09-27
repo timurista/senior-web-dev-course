@@ -26,3 +26,11 @@ function fib(n){
 
 fib(35)
 ```
+
+## Reverse recursively
+```js
+function reverse(str){
+  if (!str) return ''
+  return str[str.length-1] + reverse(str.substring(0,str.length-1))
+}
+```
