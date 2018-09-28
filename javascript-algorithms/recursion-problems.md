@@ -61,3 +61,20 @@ function someRecursive(arr, cb){
 ```
 The above works by taking sample recursive values from array and checking the condition is true at some point. We can use || to short circuit early if something is true and returned.
 
+## Is sub array
+we go through the old array and check if it contains an array
+if so we flatten that array and concat it to this array
+else we just push that element in
+```js
+function flatten(oldArr){
+    var newArr = []
+        for(var i = 0; i < oldArr.length; i++){
+            if(Array.isArray(oldArr[i])){
+                newArr = newArr.concat(flatten(oldArr[i]))
+            } else {
+                newArr.push(oldArr[i])
+            }
+    } 
+    return newArr;
+}
+```
