@@ -30,7 +30,34 @@ fib(35)
 ## Reverse recursively
 ```js
 function reverse(str){
-  if (!str) return ''
-  return str[str.length-1] + reverse(str.substring(0,str.length-1))
+    if (!str) return ''
+    return str[str.length-1] + reverse(str.substring(0,str.length-1))
 }
 ```
+
+## Palindrome
+```js
+function isPalindrome(str){
+    if (!str.length || str.length === 1) return true
+    return (str[0] === str[str.length - 1]) && isPalindrome(str.slice(1, str.length-1))
+}
+```
+
+## Some recursive
+
+```js
+// SAMPLE INPUT / OUTPUT
+// const isOdd = val => val % 2 !== 0;
+
+// someRecursive([1,2,3,4], isOdd) // true
+// someRecursive([4,6,8,9], isOdd) // true
+// someRecursive([4,6,8], isOdd) // false
+// someRecursive([4,6,8], val => val > 10); // false
+
+function someRecursive(arr, cb){
+    if (!arr.length) return false;
+    return cb(arr[0]) || someRecursive(arr.slice(1), cb);
+}
+```
+The above works by taking sample recursive values from array and checking the condition is true at some point. We can use || to short circuit early if something is true and returned.
+
