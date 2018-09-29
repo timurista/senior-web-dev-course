@@ -12,16 +12,16 @@ caclulates exponent recursively.
 ## Product of array examples
 ```
 function recursiveRange(x){
-   if (x <= 0) { 
-       return 0;
-   }
-   return x + recursiveRange(x-1)
+    if (x <= 0) { 
+        return 0;
+    }
+    return x + recursiveRange(x-1)
 }
 
 function fib(n){
     if (n<= 2) return 1;
     return fib(n-1) + fib(n-2)
-  // add whatever parameters you deem necessary - good luck!  
+    // add whatever parameters you deem necessary - good luck!  
 }
 
 fib(35)
@@ -97,21 +97,21 @@ Here we return the sum of values deeply nested inside an object by traversing it
 
 ```js
 function nestedEvenSum (obj) {
-  let sum = 0;
-  
-  (function recursive(obj) {
-      if (typeof obj === 'number' && obj%2 === 0) {          
-          sum += obj;
-          return;
-      }
-      else if (typeof obj === 'object') {
-          for (let key of Object.keys(obj)) {
-            recursive(obj[key]);
-          }
-      }
-  })(obj)
-  console.log(sum)
-  return sum;
+    let sum = 0;
+    
+    (function recursive(obj) {
+        if (typeof obj === 'number' && obj%2 === 0) {          
+            sum += obj;
+            return;
+        }
+        else if (typeof obj === 'object') {
+            for (let key of Object.keys(obj)) {
+                recursive(obj[key]);
+            }
+        }
+    })(obj)
+    console.log(sum)
+    return sum;
 }
 ```
 
@@ -119,8 +119,8 @@ function nestedEvenSum (obj) {
 Recursively do this...
 ```js
 function capitalizeWords(w) {
-  if (!w.length) return [];
-  return [w[0].toUpperCase()].concat(capitalizeWords(w.slice(1)))
+    if (!w.length) return [];
+    return [w[0].toUpperCase()].concat(capitalizeWords(w.slice(1)))
 }
 ```
 
@@ -140,4 +140,42 @@ function stringifyNumbers(obj) {
     }
     return newObj;
 }
+```
+
+## Collect Strings Recursively
+```js
+var obj = {
+    stuff: "foo",
+    data: {
+        val: {
+            thing: {
+                info: "bar",
+                moreInfo: {
+                    evenMoreInfo: {
+                        weMadeIt: "baz"
+                    }
+                }
+            }
+        }
+    }
+}
+
+function collectStrings(obj) {
+    let arr = [];
+
+    function collect(o) {
+        for (let k in o) {
+            if (typeof o[k] === 'string') {
+                arr.push(o[k]) // in pure solution you push here also
+            }
+            if (typeof o[k] === 'object') {
+                collect(o[k]) // in pure solution you concat to arr
+            }
+        }
+    }
+    collect(obj)
+    return arr;
+}
+
+collectStrings(obj) // ["foo", "bar", "baz"])
 ```
