@@ -78,3 +78,39 @@ function flatten(oldArr){
     return newArr;
 }
 ```
+
+## Capitalizes first letter recursively in array of strings
+['banana', 'john', 'smith'] => ['Banana', 'John', 'Smith']
+
+```js
+function capitalizeFirst(arr) {
+    if (!arr.length) return []
+    let first = arr[0][0].toUpperCase();
+    let capitazlied = first + arr[0].slice(1)
+    return [capitazlied].concat(capitalizeFirst(arr.slice(1)))
+}
+```
+
+
+## Nested Even Sum
+Here we return the sum of values deeply nested inside an object by traversing it and then spitting out whether it is even or not and then summing it.
+
+```js
+function nestedEvenSum (obj) {
+  let sum = 0;
+  
+  (function recursive(obj) {
+      if (typeof obj === 'number' && obj%2 === 0) {          
+          sum += obj;
+          return;
+      }
+      else if (typeof obj === 'object') {
+          for (let key of Object.keys(obj)) {
+            recursive(obj[key]);
+          }
+      }
+  })(obj)
+  console.log(sum)
+  return sum;
+}
+```
