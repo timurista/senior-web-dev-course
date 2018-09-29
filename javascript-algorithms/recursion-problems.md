@@ -114,3 +114,30 @@ function nestedEvenSum (obj) {
   return sum;
 }
 ```
+
+## Capitalize Words
+Recursively do this...
+```js
+function capitalizeWords(w) {
+  if (!w.length) return [];
+  return [w[0].toUpperCase()].concat(capitalizeWords(w.slice(1)))
+}
+```
+
+## StringifyNumbers
+
+```js
+function stringifyNumbers(obj) {
+    var newObj = {};
+    for (var key in obj) { // iterate over keys
+        if (typeof obj[key] === 'number') {
+        newObj[key] = obj[key].toString(); // set new obj to string if number
+        } else if (typeof obj[key] === 'object' && !Array.isArray(obj[key])) { // also check if it is an array
+        newObj[key] = stringifyNumbers(obj[key]);
+        } else {
+        newObj[key] = obj[key];
+        }
+    }
+    return newObj;
+}
+```
