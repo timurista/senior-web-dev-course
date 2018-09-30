@@ -36,4 +36,7 @@ function binarySearch(arr, val) {
 ```
 time complexity, o(nlogn) worst/avg, best case if o of n.
 
+## Naive string search
+loop over longer string, 2 string.
+first it goes through long string then checks if chars match.
 
