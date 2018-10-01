@@ -19,3 +19,24 @@ numberCompare(num1, num2) {
 }
 
 ## Bubble Sort
+compares each item in list and sorts them in 1 pass.
+
+```js
+function bubbleSort(arr) {
+    var noSwaps; // optimized with noSwaps if data is nearly sorted. Linear time o of n.
+    for (var i = arr.length; i > 0; i--) {
+        noSwaps = true;        
+        for (var j = 0; j< i - 1; j++) {
+            console.log(arr, arr[j], arr[j+1])
+            if (arr[j] > arr[j+1]) {
+                noSwaps = false;
+                var temp = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1] = temp;
+            }
+        }
+        if(noSwaps) break;
+    }
+    return arr;
+}
+```
