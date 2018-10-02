@@ -40,3 +40,36 @@ function bubbleSort(arr) {
     return arr;
 }
 ```
+
+## Selection Sort
+
+[ 5, 3, 4, 1, 2]
+but smallest item at begining.
+[ 5, 3, ...  ] 3 is min
+select min and place at beginning
+first thing in array is smallest value
+
+```js
+function selectionSort(arr) {
+    for (var i = 0; i< arr.length; i++) {
+        var min = arr[i];
+        var minIndex = i;
+        for (var j = i + 1; j < arr.length; j++) {
+            // 5 < 3 then set new min
+            if (arr[j] < min) {
+                minIndex = j;
+                min = arr[j];
+            }
+        }
+
+        if (minIndex !== i) {
+            // swap if minIndex changes
+            arr[minIndex] = arr[i];
+            arr[i] = min;
+        }
+    }
+    return arr;
+}
+
+selectionSort([5,3,4,1,2])
+```
