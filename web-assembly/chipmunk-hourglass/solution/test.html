@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test harness using Chipmunk2D</title>
+  </head>
+  <body>
+    <script src="chipmunk.js"></script>
+    <script>
+        var wasm_loaded = false;
+        var cm_instance;
+        var ball, ball2;
+        var ballNode, ball2Node;
+
+        Module.addOnPostRun(() => {
+            wasm_loaded = true;
+            cm_instance = Module._CM_Instance_new();
+            build_world();
+        });
+
+        function setup() {
+            // http://paulirish.com/2011/requestanimationframe-for-smart-animating/
+            window.requestAnimFrame = (function(){
+                  return  window.requestAnimationFrame       || 
+                          window.webkitRequestAnimationFrame || 
+                          window.mozRequestAnimationFrame    || 
+                          window.oRequestAnimationFrame      || 
+                          window.msRequestAnimationFrame     || 
+                          function(/* function */ callback, /* DOMElement */ element){
+                            window.setTimeout(callback, 1000 / 60);
+                          };
+            })();
+            function update() {
+                // Do stuff with chipmunk
+                if (wasm_loaded) {
+                  handle_tick();
+                }
+                requestAnimFrame(update);
+            }
+            requestAnimFrame(update);
+        }
+        window.onload = setup;
+        function build_world() {
+          // Create 4 walls of the rect and put the ball into it
+          Module._CM_Add_wall(cm_instance, 0, 10, 10, 210, 10);
+          Module._CM_Add_wall(cm_instance, 0, 210, 10, 210, 210);
+          Module._CM_Add_wall(cm_instance, 0, 210, 210, 10, 210);
+          Module._CM_Add_wall(cm_instance, 0, 10, 210, 10, 10);
+          ball = Module._CM_Add_circle(cm_instance, 0, 100, 25, 1);
+          ballNode = document.getElementById("ball");
+          ball2 = Module._CM_Add_circle(cm_instance, 0, 101, 15, 1);
+          ball2Node = document.getElementById("ball2");
+        }
+        function handle_tick() {
+          // Run a tick of the simulation, and update ball position
+          Module._CM_Step(cm_instance);
+          var location = Module._CM_Get_location(cm_instance, ball);
+          var pos = new Float32Array(Module.HEAPU8.buffer, location, 3);
+          ballNode.setAttribute("cx", pos[0]);
+          ballNode.setAttribute("cy", pos[1]);
+          var location = Module._CM_Get_location(cm_instance, ball2);
+          //var pos = new Float32Array(Module.HEAPU8.buffer, location, 3);
+          ball2Node.setAttribute("cx", pos[0]);
+          ball2Node.setAttribute("cy", pos[1]);
+        }
+    </script>
+    <svg viewBox="0 0 400 500">
+      <rect fill="none" stroke="black" x="10" y="10" width="200" height="200"/>
+      <circle id="ball" cx="100" cy="25" r="1"/>
+      <circle id="ball2" cx="101" cy="15" r="1"/>
+    </svg>
+  </body>
+</html>
