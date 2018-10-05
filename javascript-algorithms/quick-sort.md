@@ -20,7 +20,7 @@ function pivot(arr, start=0, end=arr.length+1) {
     var pivot = arr[start]; // start with pivot
     var swapIdx = start;
     for (var i = start+1; i < arr.length; i++) {
-        if (pivot > arr[i]) { // compare everything < pivot
+        if (arr[i] < pivot) { // compare everything < pivot
             swapIdx++;
             // and basically update the index we swap it starting from start and swap it if
             // that item is less than the pivot
@@ -33,4 +33,26 @@ function pivot(arr, start=0, end=arr.length+1) {
 }
 
 console.log(pivot([9,5,34,3,4,40]))
+```
+
+## Implementation
+recursively call it again on left and right side
+when helper returns updated index
+base case if sub array has 1 item in it
+when sub array has less than 2 elements
+
+```js
+function quickSort(arr, left=0, right=arr.length-1) {
+    if (left < right) {
+        // rearrange and get pivot
+        var pivotIndex = pivot(arr, left, right); // 3    
+        // left, pivot is in right place now, start after it
+        quickSort(arr, left, pivotIndex - 1);
+        // right
+        quickSort(arr, pivotIndex + 1, right);
+    }
+    return arr;
+}
+
+console.log(quickSort([9,5,34,3,4,40]))
 ```
