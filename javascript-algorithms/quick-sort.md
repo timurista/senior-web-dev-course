@@ -53,6 +53,13 @@ function quickSort(arr, left=0, right=arr.length-1) {
     }
     return arr;
 }
-
 console.log(quickSort([9,5,34,3,4,40]))
 ```
+
+## Quick Sort Big O
+best case log(n)
+worst case if nearly or completely sorted
+  n decomposition and o n comparisons
+  o(n^2)
+  get by this by picking random item or middle element
+
