@@ -143,5 +143,36 @@ console.log('UNSHIFT', list.unshift("start"))
 
 so unshift is basically adding element to first list. It sets head to new node and updates new node to point to last head's next.
 
+## singly linked list GET
+start at beginning
+loop until you get it, then count it.
+  not as efficient as array
+  index
+
+getting something at index in the list
+```js
+get(index) {
+    if (index < 0 || index >= this.length) return null;
+    var current = this.head;
+    var counter = 0;
+    while (counter !== index) {
+        current = current.next;
+        counter ++;
+    }
+    return current;
+}
+```
+
+Set method
+
+```js
+set(index, val) {
+    var node = this.get(index);
+    if (!node) return false;
+    node.val = val;
+    return true;
+}
+```
+
 
 
