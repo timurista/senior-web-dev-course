@@ -96,5 +96,52 @@ console.log(list.pop())
 console.log(list)
 ```
 
+## Shifting and unshifting
+
+```js
+
+    shift() {
+        if (!this.head) return undefined;
+        var current = this.head;
+        this.head = current.next;
+        this.length --;
+
+        if (this.length === 0) {
+            this.head = null;
+            this.tail = null;
+        }
+
+        return current;
+    }
+
+    unshift(val) {
+        var node = new Node(val);
+        node.next = this.head;
+        
+        if (!this.head) {
+          this.tail = node;
+        };
+
+        this.head = node;
+        this.length ++;
+        return this;
+    }
+}
+
+var list = new SinglyLinkedList();
+list.push(2)
+list.push(3)
+list.push('hi')
+console.log(list)
+
+console.log(list.shift(), list)
+console.log(list.shift(), list)
+console.log(list.shift(), list)
+
+console.log('UNSHIFT', list.unshift("start"))
+```
+
+so unshift is basically adding element to first list. It sets head to new node and updates new node to point to last head's next.
+
 
 
