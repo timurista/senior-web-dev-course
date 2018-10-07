@@ -174,5 +174,20 @@ set(index, val) {
 }
 ```
 
+## Remove
+find item
+take previous one to current ones next
+```js
+    remove(index) {
+        if (index < 0 || index >= this.length) return null;
+        if (index === this.length - 1) return this.pop();
+        if (index === 0) return this.shift();
+        var prev = this.get(index - 1);
+        var removedNode = prev.next;
+        prev.next = removedNode.next;
+        this.length--;
+        return removedNode;
+    }
+```
 
 
