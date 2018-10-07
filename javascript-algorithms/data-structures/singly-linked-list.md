@@ -176,20 +176,20 @@ set(index, val) {
 
 ## Insert
 ```js
-    insert(index, val) {
-        if (index < 0 || index > this.length) return false;
-        if (index === this.length) return !!this.push(val);
-        if (index === 0) return !!this.unshift(val);
-        var prev = this.get(index - 1);
-        if (!prev) return false;       
+insert(index, val) {
+    if (index < 0 || index > this.length) return false;
+    if (index === this.length) return !!this.push(val);
+    if (index === 0) return !!this.unshift(val);
+    var prev = this.get(index - 1);
+    if (!prev) return false;       
 
-        var temp = prev.next;
-        var newNode = new Node(val);
-        prev.next = newNode;
-        newNode.next = temp;
-        this.length++;
-        return true;
-    }
+    var temp = prev.next;
+    var newNode = new Node(val);
+    prev.next = newNode;
+    newNode.next = temp;
+    this.length++;
+    return true;
+}
 ```
 
 ## Remove
@@ -207,5 +207,38 @@ take previous one to current ones next
         return removedNode;
     }
 ```
+
+## Reverse
+```js
+reverse() {
+if (this.length <= 1) return this;
+var current = this.head;
+this.head = this.tail;
+this.tail = current;
+var prev = null; // we are keeping track of this and settting currnet nodes next pointer to previous while we iterate over the loop
+var next;
+
+for (var i = 0; i < this.length; i ++) {
+    next = current.next; //temp store next so we can update current later
+    current.next = prev; // set current next to previous node
+    prev = current; // previous is now current node
+    current = next; // move current ahead
+}
+
+return this;
+
+}
+```
+
+## Big O
+Insertion at beginning O(1) much faster for inserting
+
+Removal array, it depends, worst case is O(n)
+
+Searching o(n), access o(n)
+excel at insertion and deletion.
+just need to access in order, not random access.
+
+excellent when insertion and deletion in beginning and end are frequently required.
 
 
