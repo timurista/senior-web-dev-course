@@ -174,6 +174,24 @@ set(index, val) {
 }
 ```
 
+## Insert
+```js
+    insert(index, val) {
+        if (index < 0 || index > this.length) return false;
+        if (index === this.length) return !!this.push(val);
+        if (index === 0) return !!this.unshift(val);
+        var prev = this.get(index - 1);
+        if (!prev) return false;       
+
+        var temp = prev.next;
+        var newNode = new Node(val);
+        prev.next = newNode;
+        newNode.next = temp;
+        this.length++;
+        return true;
+    }
+```
+
 ## Remove
 find item
 take previous one to current ones next
