@@ -98,3 +98,45 @@ unshift(val) {
     return node;
 }
 ```
+
+## Get
+first we deal with edge case
+then we deal with whether it is less than middle we use the head or if it is greater than the middle we use the tail to minimize the number of steps.
+So this is really always o n/2. still o n in big scheme though but capped.
+
+```js
+get(index) {
+    if (index < 0 || index >= this.length) return null;
+    var current = this.head
+    var counter = 0;
+    
+    if (index <= Math.floor(this.length / 2)) {
+        while (counter !== index) {
+            counter ++;
+            current = current.next;               
+        }
+    } else {
+        current = this.tail
+        counter = this.length-1;
+        while (counter !== index) {
+            counter --;
+            current = current.prev;               
+        }
+    }
+    return current;
+}
+```
+
+## SET
+again similar to singly linked list, we just utilize the get method to give us a valid node or null.
+
+```js
+set(index, val) {
+    var node = this.get(index);
+    if (node) {
+        node.val = val;
+        return true;
+    }
+    return false;
+}
+```
