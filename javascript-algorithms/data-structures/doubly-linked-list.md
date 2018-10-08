@@ -57,3 +57,44 @@ class DoublyLinkedList {
     }
 }
 ```
+
+## Shift
+
+Important thing to note about shift is that we move the old head up and sever the length with the previous node.
+```js
+shift() {
+    if (!this.length) return undefined;
+    var oldHead = this.head;
+    if (this.length === 1) {
+        this.head = null;
+        this.tail = null;            
+    } else {
+        this.head = oldHead.next;
+        // severing references between 2 nodes
+        this.head.prev = null;
+        oldHead.next = null;            
+    }
+    this.length--;
+    return oldHead;
+
+}
+```
+
+## Unshift
+A little more straightforward than shift, here we just have to update the head prev and the head to be the node. Basically establish the connection both ways between these two items.
+
+```js
+unshift(val) {
+    var node = new Node(val);
+    if (!this.length) {
+        this.head = node;
+        this.tail = node;
+    } else {
+        this.head.prev = node;
+        node.next = this.head;
+        this.head = node;
+    }
+    this.length ++;
+    return node;
+}
+```
