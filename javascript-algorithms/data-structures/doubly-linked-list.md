@@ -163,3 +163,42 @@ insert(index, val) {
 }
 ```
 
+## Remove
+end and previous, basically just updating connections.
+
+```js
+remove(index) {
+    if (index < 0 || index >= this.length) return undefined;
+    if (index === 0) return this.shift();
+    if (index === this.length - 1) return this.pop();
+
+    let node = this.get(index);
+
+    // here we do this A -> B -> C
+    // A -> C, where A is prev, C is next, and B is the removed node
+    let prev = node.prev;
+    let next = node.next;
+    
+    prev.next = next;
+    next.prev = prev;
+
+    // sever connections with node returning
+    node.prev = null;
+    node.next = null;
+
+    this.length --;
+    return node;
+}
+```
+
+## Big O notation
+insertion, removal, searching
+insertion is constant time same as singly linked list.
+
+but removal is also always constant.
+
+searching is O n/2. Doubly linked lists makes certain things much easier. Like reversing data. Such as browser history, back is forward or back. Using prev or next easily. Finding things can come in half the time. A little more memory is what it takes. Much better but cost of more memory
+
+
+
+
