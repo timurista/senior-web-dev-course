@@ -140,3 +140,26 @@ set(index, val) {
     return false;
 }
 ```
+
+## Insert
+this we basically swap connections before and after at the index of the node using get.
+
+```js
+insert(index, val) {
+    if (index < 0 || index > this.length) return false;
+    if (index === 0) return !!this.unshift(val);
+    if (index === this.length) return !!this.push(val);
+
+    let newNode = new Node(val);
+    let prev = this.get(index - 1);
+    let after = prev.next;
+    
+    prev.next = newNode;
+    newNode.prev = prev;
+    after.prev = newNode;
+    newNode.next = after;
+    this.length ++;
+    return true;
+}
+```
+
