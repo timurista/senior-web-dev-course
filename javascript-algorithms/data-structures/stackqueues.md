@@ -59,4 +59,61 @@ Searching is O n like linked lists and access is O n like linked lists. If searc
 LIFO data structure, used for call stack, routing, page history, and many more. Javascript pretty easy to implement.
 
 
+# QUeues
+FIFO
+first in, first out. Queue think of line, first person in line is first thing out. Commonly used when waiting to join, keeps track. Background tasks on computer, print or task processing. Can only handling on thing at a time.
+
+## Queue class
+Writing own queue class is not rigid. First thing added in is first removed. Enqueue and dequeue.
+
+```js
+// but you unfortunately reindex everything
+q = []; q.push('thing'); q.shift();
+// but with array you still have to reindex things when you unshift
+``` 
+
+Queue List / Implementation
+```js
+class Node {
+    constructor(val) {
+        this.val = val;
+        this.next = null;
+    }
+}
+
+class Queue {
+    constructor() {
+        this.size = 0;
+        this.first = null;
+        this.last = null;        
+    }
+    enqueue(val) {
+        var node = new Node(val);
+        if (!this.length) {
+            this.first = node;
+            this.last = node;
+        } else {
+            this.last.next = node;
+            this.last = node;            
+        }
+        this.size++;
+        return this.size;
+    }
+    dequeue() {
+      if (!this.first) return null;
+      let first = this.first;
+      if (this.lenght === 1) {
+          this.last = null;
+      }
+      this.first = first.next;
+      this.size--;
+      return first.val;
+    }
+}
+```
+Big O notation is constant time insertion and removal.
+array was not constant time, it was cascade of reindexing.
+FIFO, first person in is first person out.
+
+
 
