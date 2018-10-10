@@ -40,7 +40,7 @@ class Stack {
       return ++this.size;
   }
   pop() {
-    if (!this.size) return undefined;
+    if (!this.size) return null;
     let first = this.first;
     if (this.size <= 1) {
         this.last = null;
@@ -51,3 +51,12 @@ class Stack {
   }
 }
 ```
+
+## Big O of stacks
+Insertion O(1) and Removal O(1)
+Searching is O n like linked lists and access is O n like linked lists. If searching or access is more of a priority then use something like an array.
+
+LIFO data structure, used for call stack, routing, page history, and many more. Javascript pretty easy to implement.
+
+
+
