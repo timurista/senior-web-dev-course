@@ -114,6 +114,6 @@ class Queue {
 Big O notation is constant time insertion and removal.
 array was not constant time, it was cascade of reindexing.
 FIFO, first person in is first person out.
-
+Foundational for more complex things.
 
 
