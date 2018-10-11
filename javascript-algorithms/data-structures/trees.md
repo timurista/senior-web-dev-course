@@ -36,33 +36,56 @@ class BinarySearchTree {
   }
 
   insert(val) {
-      var node = new Node(val);
-      if (!this.root) {
-          this.root = node;
-          return this;
-      }
-      var current = this.root;
-      while (current) {
-          if (val < current.val) {
-              if (current.left) {
-                  current = current.left;
-              } else {
-                  current.left = node;
-                  return this;
-              }
-
-          } else {
-              if (current.right) {
-                  current = current.right;
-              } else {
-                  current.right = node;
-                  return this;
-              }
-          }
-          
-      }         
-      return this;         
+    var node = new Node(val);
+    if (!this.root) {
+        this.root = node;
+        return this;
+    }
+    var current = this.root;
+    while (current) {
+      if (val < current.val) {
+        if (current.left) {
+            current = current.left;
+        } else {
+            current.left = node;
+            return this;
+        }
+      } else {
+        if (current.right) {
+            current = current.right;
+        } else {
+            current.right = node;
+            return this;
+        }
+      }          
+    }        
   }
 }
 ```
 
+## Find
+
+```js
+find(val) {
+  if (!this.root) return undefined;
+  var current = this.root;
+  var found = undefined; // keep a found variable
+  while (current && !found) {
+      if (val > current.val) {
+          current = current.right;
+      } else if (val < current.val) {
+          current = current.left;
+      } else {
+          // this case means current.val === val
+          // so then we set it to true
+          // it will only reach here if there is a valid current above
+          found = true;
+      }
+  }
+  if (!found) return undefined;
+  return current;
+}
+```
+
+## Big O
+insertion and searching of O (log n)
