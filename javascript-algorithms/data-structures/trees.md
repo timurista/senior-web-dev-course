@@ -17,3 +17,10 @@ DOM tree structure on the browser. And routing using a tree structure for networ
 Trees are used in classification, for decisions of what move to do next. Folders, etc.
 
 ## Binary Trees
+Trees with 2 children. Binary search trees excell at searching, makes it easier to retrieve. Each node has at most 2 children. Sorted in an order, BST stores data to be compared or sortable.
+
+to left is <, to the right is > the parent.
+easy to look things up, quick to search things.
+
+
+
