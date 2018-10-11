@@ -22,5 +22,47 @@ Trees with 2 children. Binary search trees excell at searching, makes it easier 
 to left is <, to the right is > the parent.
 easy to look things up, quick to search things.
 
+```js
+class Node {
+    constructor(val) {
+        this.val = val;
+        this.left = null;
+        this.right = null;
+    }
+}
+class BinarySearchTree {
+  constructor() {
+      this.root = null;
+  }
 
+  insert(val) {
+      var node = new Node(val);
+      if (!this.root) {
+          this.root = node;
+          return this;
+      }
+      var current = this.root;
+      while (current) {
+          if (val < current.val) {
+              if (current.left) {
+                  current = current.left;
+              } else {
+                  current.left = node;
+                  return this;
+              }
+
+          } else {
+              if (current.right) {
+                  current = current.right;
+              } else {
+                  current.right = node;
+                  return this;
+              }
+          }
+          
+      }         
+      return this;         
+  }
+}
+```
 
