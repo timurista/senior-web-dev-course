@@ -69,3 +69,49 @@ dfsPreorder() {
 }
 ```
 
+## DFS PostOrder
+basically same, but after we finish traversing, then we store the variable in visited.
+
+```js
+dfsPostorder() {
+    var visited = [];
+
+    function traverse(node) {             
+        if (node.left) traverse(node.left)
+        if (node.right) traverse(node.right)
+        visited.push(node.val); // only change is move this at the end            
+    }
+
+    traverse(this.root);
+    return visited;
+}
+```
+
+In order is basically just traversing the left first and pushing that.
+
+```js
+dfsInOrder() {
+    var visited = [];
+
+    function traverse(node) {             
+        if (node.left) traverse(node.left)
+        visited.push(node.val)
+        if (node.right) traverse(node.right)                          
+    }
+
+    traverse(this.root);
+    return visited;
+}
+```
+
+## BFS or DFS
+It depends on your situation on which one to use.
+Depends on tree, if tree is fully fleshed out many siblings > children. Then use DFS, since you don't have to keep much in memory.
+
+time complexity is same for DFS, but the space complexity can change.
+
+## DFS - IN order
+DFS in order you get set of all nodes in order on binary search tree.
+
+DFS PreOrder is given in order when you can recreate it.
+
