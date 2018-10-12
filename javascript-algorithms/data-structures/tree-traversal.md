@@ -47,3 +47,25 @@ bfs() {
     return visited;
 }
 ```
+
+## Node
+For any node we do the visit then explore left side, then right side.
+Explore node then traverse left and right.
+
+Recursively do it.
+
+```js
+dfsPreorder() {
+    var visited = [];
+
+    function traverse(node) {
+        visited.push(node.val);
+        if (node.left) traverse(node.left);
+        if (node.right) traverse(node.right);
+    }
+
+    traverse(this.root);
+    return visited;
+}
+```
+
