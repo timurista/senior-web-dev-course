@@ -116,3 +116,113 @@ extractMax() {
       }
   }
 ```
+
+## Priority Queue
+We want to take 1 thing at a time to tackle next.
+Everyone is assigned some priority level.
+Separate from heaps, its possible to implement in other ways.
+It's just a generic concept, abstract data structure
+
+lower number usually denotes a higher priority
+
+top level min or max thing. Everytime we remove, we always remove from top. 
+Insertion and removal have time complexity of O(1)
+
+```js
+class Node {
+    constructor(val, priority) {
+        this.val = val;
+        this.priority = priority;
+    }
+}
+
+class PriorityQueue {
+  constructor(values) {
+      this.values = values || []
+  }
+
+  parent(child) {
+      return Math.floor((child - 1)/2);
+    }
+
+  bubbleUp(index) {
+      if (index <= 0) return this.values;
+      var child = index;
+      var parent = this.parent(child);
+
+      // swap while the parent is > child
+      // now we bubble up the lowest priority
+      while (child > 0 && this.values[child].priority <= this.values[parent].priority)  {
+          // so swap while greater
+          var temp = this.values[parent];
+          this.values[parent] = this.values[child];
+          this.values[child] = temp;
+          child = parent;
+          parent = this.parent(child);
+      }       
+  }
+
+  enqueue(val, priority) {
+      var node = new Node(val, priority)
+      this.values.push(node);
+      this.bubbleUp(this.values.length-1);
+      return this.values;
+  }
+
+  dequeue() {
+      var min = this.values[0]
+      var last = this.values.pop()
+
+      if (this.values.length > 0) {
+          this.values[0] = last;
+          this.sinkDown(0);
+      }
+          
+      return min;
+  }
+
+  sinkDown(start) {
+      while(start < this.values.length) {
+          var left = 2 * start + 1;
+          var right = 2 * start + 2;
+          var leftChild = this.values[left];
+          var rightChild = this.values[right];
+          var current = this.values[start];
+          var swap = null;
+
+          if (leftChild && leftChild.priority < current.priority) {
+              swap = left;
+          }
+          if (rightChild && rightChild.priority < current.priority) {
+
+              if (swap === null || swap !== null && rightChild.priority < leftChild.priority) {
+                  swap = right;                    
+              }
+          }
+          if (swap === null) {                
+              break;
+          }
+          // perform swap
+          this.values[start] = this.values[swap];
+          this.values[swap] = current;
+          start = swap;
+      }
+  }
+}
+```
+
+## Big O Notation for time complexity
+Great for insertion and deletion
+insertion O(logn)
+deletion O(logn)
+search O(n)
+
+everytie we double number of nodes we only increase number of operations/computation is 1.
+worst case scenario. Heaps cannot look like binary search tree, there is no incomplete level
+We always insert a left, then a right. Never going to have a hinged unbalanced tree.
+Not made to be searchable. O(n) as n grows, time it takes to search grows.
+
+## Max of Min Binary heap
+Every parent in binary heap is > or < the children.
+Always fill in left to right. Heaps flatten out nicely as an array.
+
