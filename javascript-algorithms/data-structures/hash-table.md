@@ -106,10 +106,51 @@ get(key) {
 }
 ```
 
+Returning values and keys
+```js
+keys() {
+  let keys = []
+  for (let item of this.keyMap) {
+      if (item) {
+          for (let subItems of item) {
+              let key = subItems[0];
+              if (!keys.includes(key)) keys.push(key)
+          }                    
+      }
+  }
+  return keys;
+}
+
+values() {
+  let values = []
+  for (let item of this.keyMap) {
+      if (item) {
+          for (let subItems of item) {
+              let val = subItems[1];
+              if (!values.includes(val)) values.push(val)
+          }                    
+      }
+  }
+  return values;
+}
+```
+
 ### Linear Probing
 Only 1 piece of data at each position
 when there is collision we look ahead for next empty slot and store it there.
 
+## Hash Table Big O
+Insert O(1)*
+Deletion O(1)
+constant time, which comes down to how fast hash function is, and evenly it flattens things
+
+very fast, it is o(1)
+
+but searching for key can be close to constant time, worst case with bad hasihng function makes it o(n)
+usually nlogn or constant
+
+it is possible to write a constant time hash function.
+how evenly it is distributed, etc.
 
 
 
