@@ -65,4 +65,54 @@ class MaxBinaryHeap {
 }
 ```
 
+## Remving from heap
+we take the priority which is highest.
+Sinking down, delete root from heap, and restoring properties, trickle down, extract min and max.
 
+remove root and take first child.
+then take 12 and take larger child then swap.
+
+## Extract Max
+
+```js
+extractMax() {
+      var old = this.values[0]
+      var last = this.values.pop()
+
+      if (this.values.length > 0) {
+          this.values[0] = last;
+          this.sinkDown(0);
+      }
+          
+      return old;
+  }
+
+  sinkDown(start) {
+      while(start < this.values.length) {
+          var left = 2 * start + 1;
+          var right = 2 * start + 2;
+          var leftChild = this.values[left];
+          var rightChild = this.values[right];
+          var current = this.values[start];
+          var swap = null;
+
+          if (leftChild && leftChild > current) {
+              swap = left;
+          }
+          if (rightChild && rightChild > current) {
+
+              // swap null means swap hasn't happened yet or swap happened but right child > left
+              if (swap === null || swap !== null && rightChild > leftChild) {
+                  swap = right;     
+              }
+          }
+          if (swap === null) {                
+              break;
+          }
+          // perform swap
+          this.values[start] = this.values[swap];
+          this.values[swap] = current;
+          start = swap;
+      }
+  }
+```
