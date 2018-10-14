@@ -56,6 +56,48 @@ Query edge is O(1). Impelmentation of Matrix can be a little slower.
 ## Adjacency List?
 Most real world data is sparse. List tends to be better than matrix.
 
+## Graph example
+
+```js
+class Graph {
+
+constructor() {
+    this.adjacencyList = {};
+}
+
+addVertex(vertex) {
+    if (!this.adjacencyList[vertex]) {
+      this.adjacencyList[vertex] = [];
+    }
+}
+
+addEdge(v1, v2) {
+  if (this.adjacencyList[v1] && this.adjacencyList[v2]) {
+      if (!this.adjacencyList[v1].includes(v2)) {
+          this.adjacencyList[v1].push(v2)      
+      } 
+      if (!this.adjacencyList[v2].includes(v1)) {
+          this.adjacencyList[v2].push(v1)      
+      } 
+  }
+}
+
+removeEdge(v1,v2) {
+  if (this.adjacencyList[v1] && this.adjacencyList[v2]) {
+      this.adjacencyList[v1] = this.adjacencyList[v1].filter(v => v !== v2);
+      this.adjacencyList[v2] = this.adjacencyList[v2].filter(v => v !== v1);                      
+  }
+}
+
+removeVertex(vertex) {
+  let oldVertices = this.adjacencyList[vertex]
+  if (!oldVertices) return;
+  for (let v of oldVertices) {
+      this.removeEdge(v, vertex);
+  }
+  delete this.adjacencyList[vertex];
+}
+```
 
 
 
