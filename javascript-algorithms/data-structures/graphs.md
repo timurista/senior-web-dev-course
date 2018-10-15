@@ -99,6 +99,58 @@ removeVertex(vertex) {
 }
 ```
 
+## Graph traversal
+We start from one graph, then go to another node
+DG, edges are one way. 0 --> 6, need to specifiy starting point. Write code for back tracking, why shoudl you care?
+
+Web crawlers, find link to another page. Etc. Crawling is just a graph traversal.
+
+## Most overlap with
+millions of datapoints to figure out which has most things in common.
+
+## Facebook friends graph
+Find friends of friends, closest with shared friends, then recommend them.
+GPS navigation
+AI shortest path to win game
+
+## Graphs not trees
+Depth frist traversal, moving away.
+Depth first, visit order first. We remember where we have been. Follow neighbors before stepping back.
+
+## DFS
+base case when vertex is empty
+you can mark something visited using hash.
+
+if neighbor not visited, then call DFS on neighbor. Depth First order using recursion.
+
+```js
+dfs(start) {
+  var results = []
+  var visited = {}
+  var list = this.adjacencyList;
+
+  function visit(vertex) {
+      if (!list[vertex]) return null;
+      console.log('visited ' + vertex + ' neighbors: ' + list[vertex])
+      console.log('already seen', visited)
+      results.push(vertex)
+      visited[vertex] = true;
+
+      for (let neighbor of list[vertex]) {
+          if (!visited[neighbor]) {
+              visit(neighbor)
+          }
+      }
+  }
+  let firstKey = Object.keys(this.adjacencyList).shift();
+  visit(start || firstKey)
+  console.log(results)
+  return results
+}
+```
+
+
+
 
 
 
