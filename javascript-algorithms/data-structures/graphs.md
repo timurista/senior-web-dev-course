@@ -179,6 +179,42 @@ dfsIterative(start) {
 above youg et a different order for the results, because you pop off the stack you grab from the last element in the array, meaning you don't go from beginning of the stack.
 
 ## Breadth First Traversal
+Each neighbor has 3 neighbors of height 2. Number of jumps away from source. We visit things of same height before we visit the neighbors.
+
+so this function accepts a starting vertex
+then acepts a queue or array and place vertex in it.
+create an array to store nodes visited
+then object to store nodes visited
+mark starting vertex as visited
+
+## BFS
+```js
+bfs(start) {
+    var results = []
+    var visited = {}
+    var list = this.adjacencyList;
+    let firstKey = start || Object.keys(list).shift();
+    let queue = [firstKey]    
+    visited[firstKey] = true;
+    let vertex;
+
+    while (queue.length) {
+        console.log('queue', queue)
+        vertex = queue.shift();
+        results.push(vertex);
+        
+        for (let neighbor of list[vertex]) {
+            if (!visited[neighbor]) {
+                visited[neighbor] = true;
+                queue.push(neighbor)
+            }
+        }
+    }
+    console.log(results)
+    return results
+}
+```
+Basically the main difference here is we shift or take from the beginning of the neighbors and we work our way through those neighbors visiting them and their neighbors.
 
 
 
