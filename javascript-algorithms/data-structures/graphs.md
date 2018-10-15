@@ -149,7 +149,36 @@ dfs(start) {
 }
 ```
 
+## DFS Iteratively
+```js
+dfsIterative(start) {
+    var results = []
+    var visited = {}
+    var list = this.adjacencyList;
+    let firstKey = start || Object.keys(list).shift();
+    let stack = [firstKey]
+    let vertex;
+    visited[firstKey] = true;
 
+    while (stack.length) {
+        console.log('stack', stack)
+        vertex = stack.pop();
+        results.push(vertex);
+        
+        for (let neighbor of list[vertex]) {
+            if (!visited[neighbor]) {
+                visited[neighbor] = true;
+                stack.push(neighbor)
+            }
+        }
+    }
+    console.log(results)
+    return results
+}
+```
+above youg et a different order for the results, because you pop off the stack you grab from the last element in the array, meaning you don't go from beginning of the stack.
+
+## Breadth First Traversal
 
 
 
