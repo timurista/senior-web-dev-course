@@ -217,5 +217,18 @@ bfs(start) {
 Basically the main difference here is we shift or take from the beginning of the neighbors and we work our way through those neighbors visiting them and their neighbors.
 
 
+## Dijkstras Algorithm
+What is it?
+graph and priority queue. Fastest way to go from point A to point B. Edsger Dijkstra, working early started as physicist. He established rigor in computer science, he wrote a number of influencial paper. He created new fields in CS.
+
+## Why is it useful?
+GPS, finding fastest route
+Network Routing -- finds open shortest path for data
+Biology -- used to model spread of viruses among humans
+
+## We need a weighted graph
+We need to update it so that our edge has value
+We need to store [{ node: "B", weight: 10}]
+
 
 
