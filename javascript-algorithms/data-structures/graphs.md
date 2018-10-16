@@ -230,5 +230,95 @@ Biology -- used to model spread of viruses among humans
 We need to update it so that our edge has value
 We need to store [{ node: "B", weight: 10}]
 
+```js
+class WeightedGraph {
 
+constructor() {
+    this.adjacencyList = {};
+}
 
+addVertex(vertex) {
+    if (!this.adjacencyList[vertex]) {
+        this.adjacencyList[vertex] = [];
+    }
+    }
+
+addEdge(v1, v2, weight) {
+    if (this.adjacencyList[v1] && this.adjacencyList[v2]) {
+        if (!this.adjacencyList[v1].includes(v2)) {
+            this.adjacencyList[v1].push({ node: v2, weight })      
+        } 
+        if (!this.adjacencyList[v2].includes(v1)) {
+            this.adjacencyList[v2].push({ node: v1, weight })      
+        } 
+    }
+}
+```
+
+## Shortest path using Dijkstra
+look to visit a new node
+picking node with smallest known distance from A
+then look at each neighbor then sum
+distance from A to E. We update if new distance is < what we know about.
+
+need previous to know B on our path
+
+picking smallest value we use priority queue
+[A,C]
+
+The algorithm utilizes a priority queue
+```js
+getPath(node, prevObj) {
+    if (!prevObj[node]) return [node]
+    return this.getPath(prevObj[node], prevObj).concat([node]);
+}
+
+shortestPath(start, end) {
+    let distances = {};
+    let nodes = new PriorityQueue();
+    let prev = {};
+
+    // initial state
+    for (let v in this.adjacencyList) {
+        if (start === v) {
+            distances[v] = 0;
+            nodes.enqueue(v, 0);
+        }
+        else {
+            distances[v] = Infinity;
+            nodes.enqueue(v, Infinity);
+        }
+        prev[v] = null;
+    }
+    
+    while (nodes.values.length) {
+        let current = nodes.dequeue().val;
+
+        if (current === end) {
+            let path = this.getPath(end, prev);
+            console.log('FROM '+start+' to END '+end);
+            console.log('PATH: ', path.join(' -> '))
+            return path;
+        }
+
+        if (current || distances[current] !== Infinity) {
+            for (let neighbor of this.adjacencyList[current]) {
+                console.log(neighbor)
+
+                // calc new distances by adding old
+                // distance to the new one which is weight
+                // of neighbor
+                let newDistance = distances[current] + neighbor.weight;
+
+                if (newDistance < distances[neighbor.node]) {
+                    distances[neighbor.node] = newDistance;
+                    prev[neighbor.node] = current;
+                    nodes.enqueue(neighbor.node, newDistance);
+                }            
+            }            
+        }
+    }
+}
+```
+
+We can use the sink down/ bubble up implementation for sorting a priority queue to make dijkstras algorithm even faster.
