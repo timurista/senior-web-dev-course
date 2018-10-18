@@ -16,3 +16,27 @@ Push
         return this;
     }
 ```
+
+```js
+pop() {
+        if (!this.head) return undefined;
+        
+        var current = this.head;
+        var prev = this.head;
+
+        while (current.next) {
+            prev = current;
+            current = current.next;
+        }
+        // found second to last item
+        this.tail = prev;
+        this.tail.next = null;
+        this.length --;
+
+        if (this.length === 0) {
+            this.head = null;
+            this.tail = null;
+        }
+        return current;
+}        
+```
