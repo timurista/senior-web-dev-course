@@ -28,3 +28,33 @@ feed it into hidden layers, from input to hidden layer 1, hidden layer 2, to out
 
 Limitation is yes / no. Very simple.
 
+## Sseq2seq
+We have x number of words we feed into the system. Once they process we start getting output. How does it know it has to have only 3 outputs.
+
+Predictions there are 20k options, or results network can use.
+
+It will pick the one with the highest probability.
+Yes, I'm and back.
+
+Encoder and then decoder
+first part encodes meaning
+second part that decodes meaning
+
+## Training vs Applying
+Want our nueral network and get this end result back. One sentence from a different email.
+
+We want to get intuition behind things. What does it mean network through backpropogation. Probability so that Yes can be highest probability of being picked.
+
+Model logic and behavior.
+  - weights 10-11 words
+  - but 5 words as output
+
+this is very specific output,
+but the network will response only 12 word response.
+
+This training seems very specific.
+But weights are same in network. 
+Those are foundation for this model.
+
+## Standard back propogation
+
