@@ -28,3 +28,16 @@ feed it into hidden layers, from input to hidden layer 1, hidden layer 2, to out
 
 Limitation is yes / no. Very simple.
 
+## Sseq2seq
+We have x number of words we feed into the system. Once they process we start getting output. How does it know it has to have only 3 outputs.
+
+Predictions there are 20k options, or results network can use.
+
+It will pick the one with the highest probability.
+Yes, I'm and back.
+
+Encoder and then decoder
+first part encodes meaning
+second part that decodes meaning
+
+
