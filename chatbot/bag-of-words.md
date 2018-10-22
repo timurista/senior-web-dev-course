@@ -40,4 +40,21 @@ Encoder and then decoder
 first part encodes meaning
 second part that decodes meaning
 
+## Training vs Applying
+Want our nueral network and get this end result back. One sentence from a different email.
+
+We want to get intuition behind things. What does it mean network through backpropogation. Probability so that Yes can be highest probability of being picked.
+
+Model logic and behavior.
+  - weights 10-11 words
+  - but 5 words as output
+
+this is very specific output,
+but the network will response only 12 word response.
+
+This training seems very specific.
+But weights are same in network. 
+Those are foundation for this model.
+
+## Standard back propogation
 
