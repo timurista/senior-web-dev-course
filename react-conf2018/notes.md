@@ -40,7 +40,7 @@ useEffect(() => {
   return () => {
     window.removeEventListener('resize', handleResize);
   }
-}, [query])
+}, [w])
 ```
 
 ## Custom hooks
