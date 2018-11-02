@@ -60,3 +60,67 @@ function useFormInput(initialValue) {
   }
 }
 ```
+
+
+## UseState
+
+## Suspense Component
+Used like error boundaries
+react raverses back up tree to find the nearest suspense component
+
+fallback and maxDuration props
+
+experimental packages
+  - scheduler for cooperative scheduling browser env
+  - working with chrome team to integrate multiple priority queues into browser
+
+`import { scheduleCallback as defer } from 'scheduler';`
+
+how do you test priority of things
+defer(() => {
+
+})
+
+and 
+
+```js
+createResource(src => {
+  return new Promise((resolve, reject) {
+    return {
+      img.onload: resolve,
+      img.onerro: reject,
+    }
+
+  })
+})
+```
+
+## Project
+the platform palmer, neat suspense-wrapper components. Videos, stylesheets, etc. font one
+
+upgrade path, strict mode
+clean up errors then convert part of tree to concurrent mode.
+
+cutover entirely, DOM.render
+you render app using react.domCreateRoot
+
+## Profiler
+you get to see tree of things being rendered, how long. Commit steps. 16.5 and 16.6. useufl
+
+## Use Memo
+`useMemo from react`
+memoize the thing to onsly change users searchText change. UseCallback is like useMemo but returns memoized function.
+
+## Webpack-free version
+Parcel, Metro, etc.
+common misconception that you can use getINitialProps anywhere in tree.
+
+also fetch-dedupe
+  - like apollo cache layer
+  - wrap fetch, network first, cache first
+  - missing cache layer for fetch
+
+## More Polish
+go back and make it pretty
+
+## Framerx
