@@ -44,8 +44,46 @@ hybrid column stores, read optimized storage and write-optimized OLTP storage. D
 
 If you need to work with many columns at once, if you need 900 cols out of 1000 then you should use row or data store.
 
+## Redshift nodes
+cluster of leader node 
+client connections
+    - porting or other tools that use redshift as backend
+    - query processor efficient
+    - encoding schemes
+    - parrallel task processing
+    - based on postgressql base engine
+        - layer of query processor    
 
 
+Client applications
+contact with Leader Node
+drivers jdbc, odbec
 
+compute nodes are slices as clusters. It assigns tasks and collects
+
+## Node Slices
+client applications
+    sql
+cluster
+    one or more compute nodes
+
+manages all tasks, requests and response from client and sends back to client app.
+
+leader node assigns code to individual compute nodes.
+
+all execution plan
+    leader node figures out which node needs to compute or execute a class.
+
+node slices on given cluster
+    you see what capacity power
+    so you need a certain number of nodes
+        4 compute nodes
+    each node has 2 node slice
+        and each can work in parrallel
+
+Internal network
+    leader and compute nodes
+
+compute nodes can never be reached by ssh on client computer
 
 
