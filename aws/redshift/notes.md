@@ -86,4 +86,33 @@ Internal network
 
 compute nodes can never be reached by ssh on client computer
 
+## Mastering Redshift
+Listener layer
+JDBC
+executer planner then optimizer,
+queue and workload manager in leader node.
+N number of leader nodes.
+data load and unload
+vacuum / defrag 
+backup and restore, failover
+
+## Massively parrallel processing
+leader and compute nodes allow for parrallel processing (queues)
+
+## Columnar storage for db tables.
+
+## Data compression
+reduces storage requirements
+benefits
+
+## Result caching
+by default it caches all results.
+compiled code also cached (user a and user b)
+keep it in cache and user b same compiled code is used.
+If different driver, it will recreate it again. New driver jdbc or adbc is used again one time cost.
+
+Encryption -- everything will be encrypted
+Original data and clone to unencrypted part. It is immutable feature of cluster you need to turn it off explicitly.
+
+Durability 99s of durability.
 
