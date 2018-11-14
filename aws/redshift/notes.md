@@ -132,3 +132,5 @@ smallint
 etc...
 Users and Roles for redshift. Admin user is super user only access to it.
 
+## User Defined Functions
+SQL SELECT or python program for user defined function. Redshift use paramter groups to define behavior of all databases in a cluster, such as date presentation style and floating-point preceision.
