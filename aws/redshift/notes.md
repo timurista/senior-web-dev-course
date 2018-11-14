@@ -116,3 +116,19 @@ Original data and clone to unencrypted part. It is immutable feature of cluster 
 
 Durability 99s of durability.
 
+## Fundamental Constructs
+Databases creaes on db when you provision a cluster.
+
+db can have one or more named schemas
+schemas can have security
+
+tables, redshift distributes rows of table into cluster. When you need data then it all works in parrallel to compute. Joining or broadcasting specific rows to nodes entire table.
+
+views, sql query that defines logic and output shcema of view. Definition of view is executed. View is adhoc, predefined precompiled query. Any query output can be materialized with table view after execution. Priveleges for view do not extend.
+
+basic data types
+(scalar)
+smallint
+etc...
+Users and Roles for redshift. Admin user is super user only access to it.
+
