@@ -107,5 +107,54 @@ put
 chest up little above head
 3) put yourself in middle of screen
 
+## Background
+real background when background has to do with your content.
+
+consistent background
+- paper backdrops
+- colored newspaper
+seemless paper backdrops
+
+## Light
+smartphones
+soft light, diffused by paper lantern
+
+100 watts flourescent light bulb
+1 light on each side of camera
+
+3 point lighting setup
+key light with diffuser
+backlight
+one light to the right (fill light)
+one light behind (backlight)
+
+alternative setup that looks nice
+one key (front)
+one backlight pointed at paper to give gradient effect
+
+## Market most money
+put your stuff on udemy?
+put it in platform they decide how to market your course.
+
+What to do with it.
+skilshare.com
+udemy 50% of every sale they make. If you promote your own course make 97%
+
+skillshare takes 50% and splits it between skillshare and instructor. You get paid per minute viewed
+
+## Self hosting option
+teachable.com
+your own online school
+sign up, create full website with this.
+
+free courses on teachable then promote paid content to them
+
+multiple authors for courses.
+
+
+
+
+
+
 
 
