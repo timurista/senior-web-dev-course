@@ -151,7 +151,21 @@ free courses on teachable then promote paid content to them
 
 multiple authors for courses.
 
+## Better title and description
+course content matches expectations
 
+master class it should be master class
+
+beginner class should be beginner class.
+
+use keywords at beginning
+shorter titles are beginner
+
+complete 
+bootcamp
+master
+
+make sure the course matches expectaiton of student
 
 
 
