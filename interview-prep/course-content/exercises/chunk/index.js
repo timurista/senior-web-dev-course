@@ -42,7 +42,7 @@ function chunk(array, size) {
 function chunk(array, size) {
   let arr = [];
   for (let i = 0; i < array.length; i += size) {
-    arr.push(array.slice(i, i + size))
+    arr.push(array.slice(i, i + size));
   }
   console.log(arr)
   return arr;
