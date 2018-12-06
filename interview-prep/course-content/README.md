@@ -31,4 +31,28 @@ Usually better time to solve
 
 recognize an algorithm as being inefficient.
 
+## Interview setting
+Identify runtime complexity
+Experience, look at diff algorithms
+
+runtime complexity constants are dropped out of calculation.
+
+reverse 2 strings in 1 runtime call.
+O(n + m)
+second argument then it's m
+
+2 collections of data n*m
+
+sorting shortcuts
+o(n * logn)
+searching a sorted array
+O(logn)
+
+## Space complexity
+how much memory or ram it needs.
+time on time complexity
+
+
+
+
 
