@@ -27,7 +27,7 @@ function matrix(n) {
   let results = [];
   for (let i = 0; i < n; i++) {
     let array = new Array(n)
-    results.push(array.fill('-', 0, n));
+    results.push(array);
   };
   let counter = 1;
   let startCol = 0
