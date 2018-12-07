@@ -8,6 +8,24 @@
 // Example:
 //   fib(4) === 3
 
-function fib(n) {}
+function fib(n) {
+  let arr = [0, 1];
+  for (let i = 2; i <= n; i++) {
+    const a = arr[i - 1];
+    const b = arr[i - 2];
+    arr.push(a + b)
+  }
+  return arr[n];
+}
+
+// recursive
+// 2 types of engineer
+// who could solve it and who couldnt
+function fib(n) {
+  if (n < 2) {
+    return n;
+  }
+  return fib(n - 2) + fib(n - 1)
+}
 
 module.exports = fib;
