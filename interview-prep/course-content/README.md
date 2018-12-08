@@ -53,6 +53,20 @@ how much memory or ram it needs.
 time on time complexity
 
 
+## Data structures
+some optimal runtime complexity for adding, updating or editing data.
+
+optimal runtime complexity for what we want to solve.
+
+you will be asked about putting together a queue from scratch.
+
+## FIFO and Queues
+first in, first out principle for queues. array unshift and pop()
+
+class that just adds and removes. Hiding functional setting is to make sure another engineer doesnt use array methods on it.
+
+
+
 
 
 
