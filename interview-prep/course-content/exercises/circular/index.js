@@ -12,6 +12,15 @@
 //   c.next = b;
 //   circular(l) // true
 
-function circular(list) {}
+function circular(list) {
+  let firstNode = list.head;
+  let lookahead = list.head;
+  while (lookahead.next && lookahead.next.next) {
+    firstNode = firstNode.next;
+    lookahead = lookahead.next.next;
+    if (firstNode === lookahead) return true;
+  }
+  return false;
+}
 
 module.exports = circular;
