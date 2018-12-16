@@ -11,6 +11,22 @@
 //    list.insertLast('d');
 //    fromLast(list, 2).data // 'b'
 
-function fromLast(list, n) {}
+function fromLast(list, n) {
+  let current = list.head;
+  let lookahead = list.head;
+
+  // advance lookahead
+  while (n > 0 && lookahead.next) {
+    lookahead = lookahead.next;
+    n--;
+  }
+
+  while (lookahead.next) {
+    current = current.next;
+    lookahead = lookahead.next;
+  }
+
+  return current;
+}
 
 module.exports = fromLast;
