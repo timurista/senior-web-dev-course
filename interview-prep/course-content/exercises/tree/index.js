@@ -32,36 +32,40 @@ class Tree {
   }
 
   traverseBF(fn) {
-    // if (!this.root) return;
+    let arr = [this.root]
 
-    // function traverse(node) {
-    //   fn(node);
-    //   if (!node.children.length) {
-    //     return;
-    //   }
-    //   for (let child of node.children) {
-    //     return traverse(child)
-    //   }
-    // }
-
-    // traverse(this.root)
+    while (arr.length) {
+      let node = arr.shift();
+      arr.push(...node.children);
+      fn(node)
+    }
   }
 
   traverseDF(fn) {
-    if (!this.root) return;
+    let arr = [this.root];
 
-    function traverse(node) {
-      fn(node);
-      if (!node.children.length) {
-        return;
-      }
-      for (let child of node.children) {
-        traverse(child)
-      }
+    while (arr.length) {
+      let node = arr.shift();
+      arr.unshift(...node.children);
+      fn(node)
     }
-
-    traverse(this.root)
   }
+
+  // traverseDF(fn) {
+  //   if (!this.root) return;
+
+  //   function traverse(node) {
+  //     fn(node);
+  //     if (!node.children.length) {
+  //       return;
+  //     }
+  //     for (let child of node.children) {
+  //       traverse(child)
+  //     }
+  //   }
+
+  //   traverse(this.root)
+  // }
 }
 
 module.exports = { Tree, Node };
