@@ -171,6 +171,16 @@ Million users hititng our DB
   - load balancer
   - it decides cpu utilization and assigns it to them
 
+## Sorting
+With 100 records,
+  bubblesort n^2
+  selection sort n^2
+  these are equally fine
+
+with n^2
+  use merge sort
+  n*logn -- medium to implement
+
 
 
 
