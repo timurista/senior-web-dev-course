@@ -24,7 +24,6 @@ class Events {
         cb();
       }
     }
-
   }
 
   // Remove all event handlers associated
