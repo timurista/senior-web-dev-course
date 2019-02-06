@@ -20,3 +20,9 @@ Resume:
 8. show years of experience, technical skills they are looking for.
 9. no typos or bad grammar
 10. include impressive section
+
+1~2 big projects
+
+- better to have 1-2 bigger projects
+- share hardest, biggest project
+- spend time talking about face recongition.
