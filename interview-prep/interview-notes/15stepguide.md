@@ -20,3 +20,15 @@ The 3 pillars of good code:
 1. Readable
 2. Time Complexity
 3. Space Complexity
+
+## Build fundamentals
+
+Big O, data structures
+Data strucutre file cabinet of different types.
+Love to talk aboout data structures, every programming has a tradeoff.
+
+Readable, Memory, Speed.
+Each one for its own need
+
+1. how to build one
+2. how to use it
