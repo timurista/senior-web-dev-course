@@ -15,3 +15,17 @@ Integer overflow, javascript has floats. As number is too large to store, we sto
 
 takes longer to access
 non volatile
+
+## Operations on Data Structures
+
+- Insertion (adding apple item in memory)
+- Deletion
+- Traversal (access each data item once to process)
+- Searching (find if it exists in a given collection)
+- Sorting
+- Access (get data in computer)
+
+## Arrays
+
+if you just need to store and iterate one by one. And you know indices this is the best.
+Lookup is O(1). Insert / delete are O(n) linear time.
