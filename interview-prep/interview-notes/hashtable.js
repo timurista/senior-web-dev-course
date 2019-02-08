@@ -22,7 +22,7 @@ class HashTable {
   }
 
   get(key) {
-    console.log(this.data);
+    // console.log(this.data);
     const address = this._hash(key);
     for (let bucket of this.data[address]) {
       if (bucket[0] === key) {
@@ -30,11 +30,25 @@ class HashTable {
       }
     }
   }
+
+  keys() {
+    let keys = [];
+    for (let address of this.data) {
+      if (address) {
+        for (let item of address) {
+          keys.push(item[0]);
+        }
+      }
+    }
+    return keys;
+  }
 }
 
 const myHashTable = new HashTable(2);
 console.log(
   myHashTable.set("grapes", 10000),
   myHashTable.set("apples", 200),
-  myHashTable.get("grapes")
+  myHashTable.get("grapes"),
+  myHashTable.set("bananas", 600),
+  myHashTable.keys()
 );

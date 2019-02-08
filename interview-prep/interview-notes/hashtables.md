@@ -31,3 +31,10 @@ Dealing with Hashed Collisions
 
 Map maintains insertion order.
 const b = new Sets() // stores keys only
+
+## Great things about hash tables
+
+Very fast for searching for things
+But inserting is typically O(1)
+some cases on collision, but most of time you can assert O(1)
+no concept of order in hashtables
