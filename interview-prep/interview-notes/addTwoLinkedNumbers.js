@@ -105,8 +105,42 @@ function ArrToList(arr) {
 // const list1 = ArrToList([2, 4, 3]);
 // const list2 = ArrToList([5, 6, 4]);
 
+var addTwoNumbers = function(l1, l2) {
+  let head = new ListNode(0);
+  let p = l1;
+  let q = l2;
+  let curr = head;
+  let carry = 0;
+
+  while (p !== null || q !== null) {
+    const x = p ? p.val : 0;
+    const y = q ? q.val : 0;
+
+    if (p) p = p.next;
+    if (q) q = q.next;
+    let sum = carry + x + y;
+    let val;
+
+    if (sum >= 10) {
+      carry = 1;
+      val = sum - 10;
+    } else {
+      carry = 0;
+      val = sum;
+    }
+    curr.next = new ListNode(val);
+    curr = curr.next;
+  }
+  if (carry > 0) {
+    curr.next = new ListNode(carry);
+  }
+
+  return head.next;
+};
+
 const list1 = ArrToList([1, 8]);
 const list2 = ArrToList([0]);
+console.log(addTwoNumbers(ArrToList([3, 4, 2]), ArrToList([4, 6, 5])).array);
 console.log(addTwoNumbers(ArrToList([1, 8]), ArrToList([0])).array);
 console.log(addTwoNumbers(ArrToList([5]), ArrToList([5])).array);
 console.log(addTwoNumbers(ArrToList([1]), ArrToList([9, 9])).array);
