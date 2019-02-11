@@ -108,19 +108,44 @@ class LinkedList {
       size: this.length
     };
   }
+
+  reverse() {
+    if (this.length <= 1) return this;
+    let first = this.head;
+    this.tail = first;
+    let second = first.next;
+
+    while (second) {
+      // store ref to next item
+      const temp = second.next;
+      second.next = first;
+      first = second; // [0,1] switch those
+      second = temp;
+    }
+    // clear link for original head
+    this.head.next = null;
+    // by this time everything is reversed
+    // so first is head
+    this.head = first;
+    return this;
+  }
 }
 
 const myLinkedList = new LinkedList(10);
 myLinkedList.append(5);
 myLinkedList.append(16);
 myLinkedList.prepend(1);
+myLinkedList.reverse();
 console.log(myLinkedList.list);
-myLinkedList.insert(2, 99);
-myLinkedList.insert(0, 44);
-myLinkedList.insert(99, 44);
-console.log(myLinkedList.list);
-myLinkedList.remove(2);
-myLinkedList.remove(5);
-console.log(myLinkedList.list);
-myLinkedList.remove(0);
-console.log(myLinkedList.list);
+
+// console.log(myLinkedList.list);
+// myLinkedList.insert(2, 99);
+// myLinkedList.insert(0, 44);
+// myLinkedList.insert(99, 44);
+// console.log(myLinkedList.list);
+// myLinkedList.remove(2);
+// myLinkedList.remove(5);
+// console.log(myLinkedList.list);
+// myLinkedList.remove(0);
+// myLinkedList.remove(5);
+// console.log(myLinkedList.list);
