@@ -4,7 +4,6 @@ function is_rotation(a, b) {
   if (idx < 0) return false;
   for (let i = 0; i < b.length; i++) {
     let rotatedIdx = (i + idx) % b.length;
-    // console.log(a[i], b[rotatedIdx]);
     if (a[i] !== b[rotatedIdx]) return false;
   }
   return true;
