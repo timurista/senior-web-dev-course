@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <title>Hand Clock</title>
+  <style>
+    .clock {
+      border: 1px solid black;
+      border-radius: 50%;
+      height: 200px;
+      width: 200px;
+      position: absolute;
+    }
+
+    .seconds {
+      width: 1px;
+      background: black;
+      height: 100px;
+      position: relative;
+      top: 100px;
+      left: 100px;
+      text-align: center;
+      transform-origin: 0% 0%;
+    }
+
+    .minutes,
+    .hours {
+      background: black;
+      width: 2px;
+      height: 100px;
+      position: absolute;
+      top: 100px;
+      left: 100px;
+      text-align: center;
+      transform-origin: 0% 0%;
+    }
+
+    .hours {
+      background: red;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="clock">
+    <div class="seconds"></div>
+    <div class="minutes"></div>
+    <div class="hours"></div>
+  </div>
+  <script defer>
+
+    const secondsTimeout = setInterval(() => {
+      let minutes = new Date().getMinutes(); // 3 minutes
+      let hours = new Date().getHours() % 12; //       
+      let seconds = new Date().getSeconds(); // 15 * 6 = 90
+      let ratio = 90 / 15; // 6 / 1
+      let ratioHrs = 90 / 3; // out of 12 not 60, so 
+
+      console.log('hours', hours % 12 * ratioHrs)
+
+      let secondsDoc = document.querySelector('.seconds');
+      console.log('tick', secondsDoc, secondsDoc.style.transform)
+      secondsDoc.style.transform = `rotate( ${ratio * seconds - 180}deg)`;
+      document.querySelector('.minutes').style.transform = `rotate(${ratio * minutes - 180}deg)`;
+      document.querySelector('.hours').style.transform = `rotate(${ratioHrs * hours - 180}deg)`;
+    }, 1000)
+
+  // initial dot        
+    // Add your JavaScript code here
+  </script>
+</body>
+
+</html>
