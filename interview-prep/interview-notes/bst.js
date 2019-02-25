@@ -20,9 +20,9 @@ function is_bst(root) {
     }
 
 
-    let p1 = bst(node.left, min, node.val);
-    let p2 = bst(node.right, node.val, max);
-    return p1 && p2
+    let r = bst(node.left, min, node.val);
+    let l = bst(node.right, node.val, max);
+    return r && l
   }
 
   return bst(root, null, null)
