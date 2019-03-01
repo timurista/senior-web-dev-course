@@ -38,7 +38,7 @@ function rotate_in_place(given_array, n) {
     for (let col = 0; col < n; col++) {
       let newRow = n - 1 - col;
       let newCol = row;
-      console.log(flipped);
+      console.log(flipped, row, col, newRow, newCol, given_array);
       if (flipped[newRow + ',' + newCol]) continue;
       let temp = given_array[row][col];
       // console.log(row, col, col, newRow, temp, given_array[newRow][row]);
@@ -50,25 +50,28 @@ function rotate_in_place(given_array, n) {
   return given_array;
 }
 
-function rotate_in_place(given_array, n) {
-  // in place solution
-  let flipped = {};
-  for (let row = 0; row < given_array.length; row++) {
-    for (let col = 0; col < n; col++) {
-      let newRow = n - 1 - col;
-      let newCol = row;
-      console.log(flipped);
-      if (flipped[newRow + ',' + newCol]) continue;
-      let temp = given_array[row][col];
-      // console.log(row, col, col, newRow, temp, given_array[newRow][row]);
-      given_array[row][col] = given_array[newRow][newCol];
-      given_array[newRow][newCol] = temp;
-      flipped[row + ',' + col] = true;
-    }
-  }
-  return given_array;
-}
+// function rotate_in_place(given_array, n) {
+//   // in place solution
+//   let flipped = {};
+//   for (let row = 0; row < given_array.length; row++) {
+//     for (let col = 0; col < n; col++) {
+//       let newRow = n - 1 - col;
+//       let newCol = row;
+//       console.log(flipped);
+//       let temp = given_array[row][col];
+//       if (flipped[newRow + ',' + newCol], temp) continue;
+//       // console.log(row, col, col, newRow, temp, given_array[newRow][row]);
+//       given_array[row][col] = given_array[newRow][newCol];
+//       given_array[newRow][newCol] = temp;
+//       flipped[row + ',' + col] = true;
+//     }
+//   }
+//   return given_array;
+// }
 
 
 let arr = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+let arr2 = [[1, 2], [3, 4]]
+
 console.log(rotate_in_place(arr, arr.length))
+console.log(rotate_in_place(arr2, arr2.length))
