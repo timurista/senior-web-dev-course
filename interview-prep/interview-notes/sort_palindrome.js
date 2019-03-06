@@ -45,4 +45,5 @@ function isPalindrome(s) {
   return s === s.split('').reverse().join('');
 }
 
+// TODO make work
 console.log(sort_palindromes(['def', 'aba', 'dgh', 'bab', 'cac'])) // aba, bab, dgh, def
