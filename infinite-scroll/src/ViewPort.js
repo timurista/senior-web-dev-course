@@ -1,16 +1,39 @@
 import React, { Component } from 'react';
 
-let SHARD_SIZE = 100;
-let SCROLL_STEP_Y = 1;
+let SHARD_SIZE = 20;
 let OVERFLOW_ROWS = 10;
+const ELEM_HEIGHT = 20;
 
 class Slice extends Component {
   render() {
-    const { slice } = this.props;
+    const { slice, index } = this.props;
     return (
-      <div key={slice.uuid}>{slice.firstName} {slice.lastName} - {slice.job}</div>
+      <div key={slice.uuid}>Row {index} - {slice.firstName} {slice.lastName} - {slice.job}</div>
     )
   }
+}
+
+export function cancelTimeout(timeoutID) {
+  cancelAnimationFrame(timeoutID.id);
+}
+
+export function requestTimeout(callback, delay) {
+  let now = new Date();
+  const start = now;
+
+  function tick() {
+    if (now - start >= delay) {
+      callback.call(null);
+    } else {
+      timeoutID.id = requestAnimationFrame(tick);
+    }
+  }
+
+  const timeoutID = {
+    id: requestAnimationFrame(tick),
+  };
+
+  return timeoutID;
 }
 
 class ViewPort extends Component {
@@ -34,18 +57,19 @@ class ViewPort extends Component {
   // https://github.com/bvaughn/react-window <-- inspired
   renderSlices(slices) {
     const maxHeight = this.getEstHeight();
-    const elemHeight = 20;
+    const elemHeight = ELEM_HEIGHT;
 
-    console.log('TOP', this.state.start, this.state.end)
-    console.log('TOP INSIDE', elemHeight, this.state.offset)
+    // console.log('TOP', this.state.start, this.state.end)
+    // console.log('TOP INSIDE', elemHeight, this.state.offset)
     return slices.map((slice, i) => {
       // const top = maxHeight - (i * elemHeight * this.state.end * SCROLL_STEP_Y);
-      const top = (i * elemHeight) - this.state.offset;
+      const top = (i * elemHeight) + this.state.offset;
+      // const top = 0;
       if (!slice) return null;
       return (
-        <div key={slice.uuid + '-slice'} style={{ position: 'relative', left: 0, top: top + 'px', height: elemHeight + 'px' }}>
+        <div id={i + this.state.start} key={slice.uuid + '-slice'} style={{ position: 'relative', left: 0, top: top + 'px', height: elemHeight + 'px' }}>
           <Slice
-            index={i}
+            index={i + this.state.start}
             slice={slice} shouldRender={true}
           />
         </div>
@@ -54,79 +78,55 @@ class ViewPort extends Component {
   }
 
   componentDidMount() {
-    console.log('DID MOUNT')
-    this.scrollListener = window.addEventListener('scroll', (event) => {
-      console.log('SCROLL')
-
-      this.handleScroll(event)
-    })
+    window.setInterval(() => {
+      requestAnimationFrame(() => {
+        let offset = this.viewPort.current.scrollTop;
+        this.setState({
+          offset
+        })
+        this.updateSlices();
+      })
+    }, 150)
   }
 
   componentWillUnmount() {
-    window.removeEventListener(this.scrollListener)
+    // window.removeEventListener(this.scrollListener)
   }
 
-  handleScroll(event) {
-    console.log('scroll event', window.pageYOffset)
-    // event.stopPropogation();
-    let last_known_scroll_position = window.scrollY;
-    this.calcSlices(last_known_scroll_position);
-    // if (!this.state.ticking) {
-    //   window.requestAnimationFrame(() => {
-    //     this.calcSlices(last_known_scroll_position);
-    //     this.setState({ ticking: false });
-    //   });
-
-    //   this.setState({ ticking: true });
-    // }
-  }
-
-  calcSlices(last_known_scroll_position = 0) {
-    if (!last_known_scroll_position) return;
-    let direction = Math.sign(last_known_scroll_position - this.state.topOffset);
-    let mag = Math.abs(last_known_scroll_position - this.state.topOffset);
-    console.log('magnitude', mag, direction)
-
-    this.setState(prev => ({
-      topOffset: window.scrollY,
-      offset: (prev.offset || 0) + (mag * direction),
-      magnitude: mag
-    }))
-
-    this.updateSlices();
-  }
 
   getSlices = () => {
     const { start, end } = this.state;
-    return this.props.data.slice(start, end)
+    let startArr = new Array(this.props.data.slice(0, start)).fill(null)
+    let endArr = new Array(this.props.data.slice(end)).fill(null)
+    return startArr.concat(this.props.data.slice(start, end)).concat(endArr)
   }
 
   getEstHeight = () => {
-    return (this.props.data.length * 200);
+    return (this.props.data.length * ELEM_HEIGHT);
   }
 
   updateSlices() {
-    const offsets = this.getSliceOffsets(this.getSlices());
-    let box = this.viewPort.current && this.viewPort.current.getBoundingClientRect();
-    console.log('OFFSETS', box.bottom, offsets)
-    let maxStart = this.state.start;
-    let minEnd = this.state.start;
-    for (let offset of offsets) {
-      if (box && offset.offset < 0) {
-        console.log('offsets', offset.offset)
-        maxStart = Math.max(maxStart, offset.index + this.state.start)
-      }
-      if (box && offset.offset > 1000) {
-        minEnd = Math.min(minEnd, offset.index + this.state.end)
-      }
-    }
-    this.setState({ start: maxStart, end: maxStart + 10 })
+    // const offsets = this.getSliceOffsets(this.getSlices());
+    let offset = this.state.offset;
+    // let box = this.viewPort.current && this.viewPort.current.getBoundingClientRect();
+    let maxIndex = Math.floor(offset / ELEM_HEIGHT) - 5;
+    let maxStart = maxIndex <= 0 ? 0 : maxIndex;
+
+    let minEnd = maxIndex + SHARD_SIZE * 2;
+    // minEnd = minEnd > maxStart + OVERFLOW_ROWS ? 
+    console.log('OFFSETS', maxStart, minEnd)
+    this.setState({ start: maxStart, end: minEnd })
   }
 
+
+  componentDidUpdate(state) {
+    // console.log('UPDATE HAPPENED', state, this.state.offset);
+    // console.log(this.viewPort.current.getBoundingClientRect());
+  }
   render() {
 
     return (
-      <div id="win" style={{ height: '500px', overflow: 'auto' }} ref={this.viewPort}>
+      <div id="win" style={{ height: '800px', overflow: 'auto' }} ref={this.viewPort}>
         <div id="viewport" style={{ height: this.getEstHeight() + 'px', position: 'relative' }}>
           {this.renderSlices(this.getSlices())}
         </div>
