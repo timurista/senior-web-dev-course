@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
 let SHARD_SIZE = 100;
+let SCROLL_STEP_Y = 1;
+let OVERFLOW_ROWS = 10;
 
 class Slice extends Component {
   render() {
@@ -13,34 +15,50 @@ class Slice extends Component {
 
 class ViewPort extends Component {
   state = {
-    slices: this.props.data.slice(0, SHARD_SIZE),
-    slicesBottom: [],
-    slicesTop: [],
+    slices: this.props.data.slice(0, SHARD_SIZE * 2 + OVERFLOW_ROWS),
     start: 0,
-    end: 1,
+    end: SHARD_SIZE * 2 + OVERFLOW_ROWS,
+    offset: 0,
+    topOffset: 0,
   }
   viewPort = React.createRef();
 
+  getSliceOffsets = (slices) => {
+    const elemHeight = 20;
+    return slices.map((slice, i) => {
+      const top = (i * elemHeight) - this.state.offset;
+      return { offset: top, index: i }
+    })
+  }
+
+  // https://github.com/bvaughn/react-window <-- inspired
   renderSlices(slices) {
-    console.log('SLICES', slices)
-    return slices.map((slice, index) => {
+    const maxHeight = this.getEstHeight();
+    const elemHeight = 20;
+
+    console.log('TOP', this.state.start, this.state.end)
+    console.log('TOP INSIDE', elemHeight, this.state.offset)
+    return slices.map((slice, i) => {
+      // const top = maxHeight - (i * elemHeight * this.state.end * SCROLL_STEP_Y);
+      const top = (i * elemHeight) - this.state.offset;
       if (!slice) return null;
-      return <Slice key={slice.uuid + '-slice'} slice={slice} shouldRender={true} />
-    }
-    )
+      return (
+        <div key={slice.uuid + '-slice'} style={{ position: 'relative', left: 0, top: top + 'px', height: elemHeight + 'px' }}>
+          <Slice
+            index={i}
+            slice={slice} shouldRender={true}
+          />
+        </div>
+      )
+    })
   }
 
   componentDidMount() {
+    console.log('DID MOUNT')
     this.scrollListener = window.addEventListener('scroll', (event) => {
+      console.log('SCROLL')
+
       this.handleScroll(event)
-    })
-    this.setState(prev => {
-      for (let i = prev.start * SHARD_SIZE; i < prev.end * SHARD_SIZE; i++) {
-        prev.slices[i] = this.props.data[i];
-      }
-      return ({
-        slices: prev.slices,
-      })
     })
   }
 
@@ -49,81 +67,70 @@ class ViewPort extends Component {
   }
 
   handleScroll(event) {
-    // console.log('scroll event', window.pageYOffset)
+    console.log('scroll event', window.pageYOffset)
     // event.stopPropogation();
     let last_known_scroll_position = window.scrollY;
+    this.calcSlices(last_known_scroll_position);
+    // if (!this.state.ticking) {
+    //   window.requestAnimationFrame(() => {
+    //     this.calcSlices(last_known_scroll_position);
+    //     this.setState({ ticking: false });
+    //   });
 
-    if (!this.state.ticking) {
-      window.requestAnimationFrame(() => {
-        this.calcSlices(last_known_scroll_position);
-        this.setState({ ticking: false });
-      });
-
-      this.setState({ ticking: true });
-    }
-  }
-
-  calcSlices(last_known_scroll_position) {
-    if (!last_known_scroll_position) return;
-    let box = this.viewPort.current.getBoundingClientRect()
-    let middleSectionStart = box.bottom * (1 / 3);
-    let middleSectionEnd = box.bottom * (2 / 3);
-    // console.log('viewport', middleSectionStart, middleSectionEnd)
-
-    let shouldRenderTop = last_known_scroll_position <= middleSectionStart;
-    let shouldRenderBottom = last_known_scroll_position >= middleSectionEnd;
-
-    let start = this.state.start;
-    let end = this.state.end;
-    // if (shouldRenderTop) {
-    //   if (start > 0) start--;
-    //   end--;
-    //   if (start === 0) end = 1;
+    //   this.setState({ ticking: true });
     // }
-    if (shouldRenderBottom) {
-      const indexEnd = Math.floor(this.props.data.length / SHARD_SIZE);
-      if (end < indexEnd) end++;
-    }
-
-    if (end > 5) {
-      start = end - 5;
-    } if (end < 5) {
-      start = 0;
-    }
-
-    this.updateRenderSlices(start, end);
   }
 
-  updateRenderSlices(start, end) {
+  calcSlices(last_known_scroll_position = 0) {
+    if (!last_known_scroll_position) return;
+    let direction = Math.sign(last_known_scroll_position - this.state.topOffset);
+    let mag = Math.abs(last_known_scroll_position - this.state.topOffset);
+    console.log('magnitude', mag, direction)
 
-    this.setState(prev => {
-      for (let i = start * SHARD_SIZE; i < end * SHARD_SIZE; i++) {
-        prev.slices[i] = this.props.data[i];
+    this.setState(prev => ({
+      topOffset: window.scrollY,
+      offset: (prev.offset || 0) + (mag * direction),
+      magnitude: mag
+    }))
+
+    this.updateSlices();
+  }
+
+  getSlices = () => {
+    const { start, end } = this.state;
+    return this.props.data.slice(start, end)
+  }
+
+  getEstHeight = () => {
+    return (this.props.data.length * 200);
+  }
+
+  updateSlices() {
+    const offsets = this.getSliceOffsets(this.getSlices());
+    let box = this.viewPort.current && this.viewPort.current.getBoundingClientRect();
+    console.log('OFFSETS', box.bottom, offsets)
+    let maxStart = this.state.start;
+    let minEnd = this.state.start;
+    for (let offset of offsets) {
+      if (box && offset.offset < 0) {
+        console.log('offsets', offset.offset)
+        maxStart = Math.max(maxStart, offset.index + this.state.start)
       }
-      return ({
-        slices: prev.slices,
-        start: start,
-        end: end,
-      })
-    })
-    // console.log(start, end, this.props.data)
-    // this.setState({
-    //   slicesBottom: this.props.data.slice((start - 1) * SHARD_SIZE, start * SHARD_SIZE),
-    //   slices: this.props.data.slice(start * SHARD_SIZE, end * SHARD_SIZE),
-    //   slicesTop: this.props.data.slice((end - 1) * SHARD_SIZE, end * SHARD_SIZE),
-    //   start,
-    //   end,
-    // })
+      if (box && offset.offset > 1000) {
+        minEnd = Math.min(minEnd, offset.index + this.state.end)
+      }
+    }
+    this.setState({ start: maxStart, end: maxStart + 10 })
   }
 
   render() {
-    const { slicesTop, slices, slicesBottom, start, end } = this.state;
-    const getSlices = (start, end) => {
-      return this.props.data.slice(start * SHARD_SIZE, end * SHARD_SIZE)
-    }
-    return (<div>
-      <div id="viewport" ref={this.viewPort}>{this.renderSlices(getSlices(start, end))}</div>
-    </div>)
+
+    return (
+      <div id="win" style={{ height: '500px', overflow: 'auto' }} ref={this.viewPort}>
+        <div id="viewport" style={{ height: this.getEstHeight() + 'px', position: 'relative' }}>
+          {this.renderSlices(this.getSlices())}
+        </div>
+      </div>)
   }
 }
 
