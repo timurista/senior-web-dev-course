@@ -5,6 +5,7 @@ import ViewPort from './ViewPort';
 import faker from 'faker';
 import sort from 'fast-sort';
 import ReactProgressiveList from './ProgressiveLoad';
+import ViewPort2 from './ViewPort2';
 
 let DATA = new Array(50000).fill({}).map(_ => ({
   firstName: faker.name.firstName(),
