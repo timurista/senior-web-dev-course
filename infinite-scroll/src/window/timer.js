@@ -18,6 +18,7 @@ export function requestTimeout(callback, delay) {
   const start = now();
 
   function tick() {
+    console.log('tick', now(), start, delay)
     if (now() - start >= delay) {
       callback.call(null);
     } else {

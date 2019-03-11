@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 
 let SHARD_SIZE = 20;
 let OVERFLOW_ROWS = 10;
-const ELEM_HEIGHT = 20;
+const ELEM_HEIGHT = 40;
 
-class Slice extends Component {
+class Slice extends React.PureComponent {
   render() {
     const { slice, index } = this.props;
     return (
-      <div key={slice.uuid}>Row {index} - {slice.firstName} {slice.lastName} - {slice.job}</div>
+      <div key={slice.uuid} style={{ height: ELEM_HEIGHT + 'px', border: '1px solid black' }}>Row {index} - {slice.firstName} {slice.lastName} - {slice.job}</div>
     )
   }
 }
@@ -43,31 +43,25 @@ class ViewPort extends Component {
     end: SHARD_SIZE * 2 + OVERFLOW_ROWS,
     offset: 0,
     topOffset: 0,
+    scrollRequested: false,
   }
   viewPort = React.createRef();
 
-  getSliceOffsets = (slices) => {
-    const elemHeight = 20;
-    return slices.map((slice, i) => {
-      const top = (i * elemHeight) - this.state.offset;
-      return { offset: top, index: i }
-    })
-  }
 
   // https://github.com/bvaughn/react-window <-- inspired
   renderSlices(slices) {
-    const maxHeight = this.getEstHeight();
     const elemHeight = ELEM_HEIGHT;
 
-    // console.log('TOP', this.state.start, this.state.end)
-    // console.log('TOP INSIDE', elemHeight, this.state.offset)
     return slices.map((slice, i) => {
-      // const top = maxHeight - (i * elemHeight * this.state.end * SCROLL_STEP_Y);
-      const top = (i * elemHeight) + this.state.offset;
-      // const top = 0;
+      const top = ((i * elemHeight) + this.state.offset);
       if (!slice) return null;
       return (
-        <div id={i + this.state.start} key={slice.uuid + '-slice'} style={{ position: 'relative', left: 0, top: top + 'px', height: elemHeight + 'px' }}>
+        <div
+          id={i + this.state.start}
+          key={slice.uuid + '-slice'}
+          style={{
+            position: 'absolute', left: 0, top: top + 'px', height: elemHeight + 'px', width: '100%'
+          }}>
           <Slice
             index={i + this.state.start}
             slice={slice} shouldRender={true}
@@ -77,56 +71,33 @@ class ViewPort extends Component {
     })
   }
 
-  componentDidMount() {
-    window.setInterval(() => {
-      requestAnimationFrame(() => {
-        let offset = this.viewPort.current.scrollTop;
-        this.setState({
-          offset
-        })
-        this.updateSlices();
-      })
-    }, 150)
-  }
-
-  componentWillUnmount() {
-    // window.removeEventListener(this.scrollListener)
-  }
-
-
   getSlices = () => {
     const { start, end } = this.state;
-    let startArr = new Array(this.props.data.slice(0, start)).fill(null)
-    let endArr = new Array(this.props.data.slice(end)).fill(null)
-    return startArr.concat(this.props.data.slice(start, end)).concat(endArr)
+    return this.props.data.slice(start, end)
+    // return startArr.concat(this.props.data.slice(start, end)).concat(endArr)
   }
 
   getEstHeight = () => {
     return (this.props.data.length * ELEM_HEIGHT);
   }
 
-  updateSlices() {
-    // const offsets = this.getSliceOffsets(this.getSlices());
-    let offset = this.state.offset;
-    // let box = this.viewPort.current && this.viewPort.current.getBoundingClientRect();
-    let maxIndex = Math.floor(offset / ELEM_HEIGHT) - 5;
+  onScroll = event => {
+    console.log('scroll', event.currentTarget.scrollTop);
+    this.updateSlices(event.currentTarget.scrollTop);
+  }
+
+  updateSlices(offset) {
+    let maxIndex = Math.floor(offset / ELEM_HEIGHT) - 2;
     let maxStart = maxIndex <= 0 ? 0 : maxIndex;
 
     let minEnd = maxIndex + SHARD_SIZE * 2;
-    // minEnd = minEnd > maxStart + OVERFLOW_ROWS ? 
-    console.log('OFFSETS', maxStart, minEnd)
-    this.setState({ start: maxStart, end: minEnd })
+    // console.log('OFFSETS', maxStart, minEnd, offset)
+    this.setState({ start: maxStart, end: minEnd, offset })
   }
 
-
-  componentDidUpdate(state) {
-    // console.log('UPDATE HAPPENED', state, this.state.offset);
-    // console.log(this.viewPort.current.getBoundingClientRect());
-  }
   render() {
-
     return (
-      <div id="win" style={{ height: '800px', overflow: 'auto' }} ref={this.viewPort}>
+      <div onScroll={this.onScroll} id="win" style={{ height: '800px', overflow: 'auto' }} ref={this.viewPort}>
         <div id="viewport" style={{ height: this.getEstHeight() + 'px', position: 'relative' }}>
           {this.renderSlices(this.getSlices())}
         </div>
