@@ -17,6 +17,7 @@ let DATA = new Array(50000).fill({}).map(_ => ({
 class App extends Component {
   state = {
     data: DATA,
+    display: DATA,
     options: [
       { label: 'First Name', value: 'firstName' },
       { label: 'Last Name', value: 'lastName' },
@@ -32,9 +33,25 @@ class App extends Component {
   handleSelectChange = (event) => {
     console.log('selection change', event.currentTarget.value)
     let fieldStr = event.currentTarget.value;
-    this.setState(prev => ({
-      data: prev.sortedArrays[fieldStr],
-    }))
+    new Promise(resolve => {
+      this.setState(prev => ({
+        data: prev.sortedArrays[fieldStr],
+        display: prev.sortedArrays[fieldStr]
+      }))
+      resolve()
+    })
+    // Promise.resolve()
+  }
+
+  handleFilter = (event) => {
+    let val = event.currentTarget.value;
+    let filters = Object(this.state.data[0]).keys()
+    new Promise(resolve => {
+      this.setState(prev => ({
+        display: prev.data.filter(c => c['firstName'].includes(val)),
+      }))
+      resolve()
+    })
   }
 
   componentDidMount() {
@@ -68,7 +85,7 @@ class App extends Component {
         <header className="App-header">
           Header
         </header>
-        SEARCH BAR
+        Search <input type="text" onChange={this.handleFilter} />
 
         <select onChange={this.handleSelectChange}>
           <option value="firstName">First Name</option>
@@ -76,7 +93,7 @@ class App extends Component {
           <option value="job">Job</option>
         </select>
 
-        <ViewPort data={this.state.data} />
+        <ViewPort data={this.state.display} />
       </div>
     );
   }

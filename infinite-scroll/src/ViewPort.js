@@ -2,7 +2,28 @@ import React, { Component } from 'react';
 
 let SHARD_SIZE = 20;
 let OVERFLOW_ROWS = 10;
-const ELEM_HEIGHT = 40;
+const ELEM_HEIGHT = 200;
+
+class ScrollHandler {
+  constructor(timeout = 150) {
+    this.locked = false;
+    this.event = null
+    this.timeout = timeout;
+  }
+  add(event, cb) {
+    let now = new Date();
+    if (!this.locked) {
+      this.event = { cb, now };
+      this.locked = true;
+    }
+    console.log('EVENT', event, now)
+    if (now.getTime() >= this.event.now.getTime() + this.timeout) {
+      cb.call(event);
+      this.event = null;
+      this.locked = false;
+    }
+  }
+}
 
 class Slice extends React.PureComponent {
   render() {
@@ -11,29 +32,6 @@ class Slice extends React.PureComponent {
       <div key={slice.uuid} style={{ height: ELEM_HEIGHT + 'px', border: '1px solid black' }}>Row {index} - {slice.firstName} {slice.lastName} - {slice.job}</div>
     )
   }
-}
-
-export function cancelTimeout(timeoutID) {
-  cancelAnimationFrame(timeoutID.id);
-}
-
-export function requestTimeout(callback, delay) {
-  let now = new Date();
-  const start = now;
-
-  function tick() {
-    if (now - start >= delay) {
-      callback.call(null);
-    } else {
-      timeoutID.id = requestAnimationFrame(tick);
-    }
-  }
-
-  const timeoutID = {
-    id: requestAnimationFrame(tick),
-  };
-
-  return timeoutID;
 }
 
 class ViewPort extends Component {
@@ -46,6 +44,7 @@ class ViewPort extends Component {
     scrollRequested: false,
   }
   viewPort = React.createRef();
+  scrollHandler = new ScrollHandler(20);
 
 
   // https://github.com/bvaughn/react-window <-- inspired
@@ -74,7 +73,6 @@ class ViewPort extends Component {
   getSlices = () => {
     const { start, end } = this.state;
     return this.props.data.slice(start, end)
-    // return startArr.concat(this.props.data.slice(start, end)).concat(endArr)
   }
 
   getEstHeight = () => {
@@ -82,15 +80,17 @@ class ViewPort extends Component {
   }
 
   onScroll = event => {
-    console.log('scroll', event.currentTarget.scrollTop);
-    this.updateSlices(event.currentTarget.scrollTop);
+    console.log('scroll');
+    let currentTarget = event.currentTarget
+    this.updateSlices(currentTarget.scrollTop)
+    // this.scrollHandler.add(event, () => this.updateSlices(currentTarget.scrollTop));
   }
 
   updateSlices(offset) {
     let maxIndex = Math.floor(offset / ELEM_HEIGHT) - 2;
     let maxStart = maxIndex <= 0 ? 0 : maxIndex;
 
-    let minEnd = maxIndex + SHARD_SIZE * 2;
+    let minEnd = maxIndex + SHARD_SIZE * 1.2;
     // console.log('OFFSETS', maxStart, minEnd, offset)
     this.setState({ start: maxStart, end: minEnd, offset })
   }
