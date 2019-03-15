@@ -1,5 +1,7 @@
 {
   "git.ignoreLimitWarning": true,
   "editor.acceptSuggestionOnCommitCharacter": false,
-  "python.linting.pylintEnabled": false
+  "python.linting.pylintEnabled": false,
+  "editor.tabSize": 2,
+  "editor.parameterHints.enabled": false
 }
