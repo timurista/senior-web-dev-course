@@ -29,8 +29,8 @@ console.log('AFTER')
 class TimePriority {
   constructor(comparator = (a, b) => a > b) {
     this.heap = [];
+    this.promises = [];
     this.comparator = comparator;
-
   }
   size() {
     return this.heap.length;
@@ -39,8 +39,21 @@ class TimePriority {
     return this.heap[0];
   }
 
-  enqueue(promise, timestamp) {
-    this.heap.unshift({ promise, timestamp })
+  addPromise(promise, timestamp) {
+    this.promises.push(promise);
+    let index = this.promises.length - 1;
+
+    promise.then(value => {
+      // console.log('before', this.promises)
+
+      this.promises.splice(index, 1);
+      this.enqueue({ value, timestamp });
+      // console.log('removed', this.promises)
+    })
+  }
+
+  enqueue(value) {
+    this.heap.unshift(value)
     this.shiftValues();
   }
 
@@ -51,10 +64,10 @@ class TimePriority {
     let nextVal = this.heap[next];
     if (!nextVal) return;
 
-    console.log(current)
+    // console.log(current)
     while (current && nextVal) {
-      if (current.timestamp > nextVal.timestamp) {
-        console.log('swap', start, next)
+      if (current.timestamp < nextVal.timestamp) {
+        // console.log('swap', start, next)
         let temp = this.heap[start];
         this.heap[start] = this.heap[next];
         this.heap[next] = temp;
@@ -71,20 +84,40 @@ class TimePriority {
   dequeue() {
     return this.heap.pop()
   }
+
+  last() {
+    return this.heap[this.heap.length - 1]
+  }
 }
 
 
 let timePriority = new TimePriority();
 let now = new Date();
-timePriority.enqueue(promise2, now.getTime() + 1000);
-timePriority.enqueue(promise1, now.getTime() + 2000);
-timePriority.enqueue(promise3, now.getTime() + 3000);
+
+setInterval(() => {
+  let rand = () => Math.floor(Math.random() * 50 + 1);
+  // console.log('rand', rand)
+  timePriority.addPromise(new Promise(resolve => setTimeout(() => resolve(1), rand)), now.getTime() + rand());
+
+  // timePriority.addPromise(promise1, now.getTime() + 2000);
+  // timePriority.addPromise(promise3, now.getTime() + 3000);
+  // console.log('HEAP', timePriority.heap)
+  timePriority.dequeue()
+}, 20)
+
+setInterval(() => {
+
+  console.log('HEAP', timePriority.last());
+}, 500)
 
 
-console.log(timePriority)
-console.log(timePriority.dequeue().promise.then(e => console.log(e)));
-console.log(timePriority.dequeue().promise.then(e => console.log(e)));
-console.log(timePriority.dequeue().promise.then(e => console.log(e)));
+// console.log(timePriority)
+// console.log('HEAP', timePriority.heap)
+// console.log(timePriority.dequeue());
+// console.log(timePriority.dequeue());
+// console.log(timePriority.dequeue());
+// console.log('HEAP', timePriority.heap)
+
 
 // timePriority.dequeue().promise.then(console.log);
 // timePriority.dequeue().promise.then(console.log);
@@ -92,3 +125,24 @@ console.log(timePriority.dequeue().promise.then(e => console.log(e)));
 
 // Approach 3
 // Priority Queue with heap
+
+// APPROACH 3
+/**
+ * TRANSCATION TABLE
+ * request | time
+ * resolver => request, time => finds write request at closest time, sends back
+ */
+
+
+// Approach 4
+// Locking mechanism --> mutex / method
+  // mutex is locking mechanism 
+  // it can proceed doing work, wake up worker nodes
+// semaphore is a generalized mutex
+
+
+
+ // TODO Approach 5
+ // Reactive Async
+ // http://www.csc.kth.se/~phaller/doc/haller16-scala.pdf
+    // Futures / Promises in Scala
