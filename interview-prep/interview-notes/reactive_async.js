@@ -1,10 +1,10 @@
 
 
 // TODO Approach 5
-// Reactive Async
+// Reactive Observer/Subscriber pattern, Async
 // http://www.csc.kth.se/~phaller/doc/haller16-scala.pdf
 // Futures / Promises in Scala
-class Subject {
+class Observer {
   constructor() {
     this.timeout = 10;
     this.events = [];
@@ -45,7 +45,9 @@ class Subject {
 
 const median = vals => vals.sort((a, b) => a - b)[Math.floor(vals.length / 2)]
 
-let mySubject = new Subject();
-mySubject.subscribe(val => {
+let myObserver = new Observer();
+const fn1 = val => {
   console.log(val, 'seconds:', new Date().getSeconds())
-})
+};
+myObserver.subscribe(fn1)
+myObserver.subscribe(fn1)
