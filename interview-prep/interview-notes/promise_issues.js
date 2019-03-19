@@ -136,13 +136,7 @@ setInterval(() => {
 
 // Approach 4
 // Locking mechanism --> mutex / method
-  // mutex is locking mechanism 
-  // it can proceed doing work, wake up worker nodes
+// mutex is locking mechanism 
+// it can proceed doing work, wake up worker nodes
 // semaphore is a generalized mutex
 
-
-
- // TODO Approach 5
- // Reactive Async
- // http://www.csc.kth.se/~phaller/doc/haller16-scala.pdf
-    // Futures / Promises in Scala
