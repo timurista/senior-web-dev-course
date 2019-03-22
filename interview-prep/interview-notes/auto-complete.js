@@ -35,7 +35,8 @@ class Trie {
       if (c === STOP)
         subresult = ['']
       else {
-        console.log(c)
+        subresult = [];
+        console.log(c, v)
         for (let s of this._elements(v)) {
           let restword = c + s
           subresult.push(restword)
