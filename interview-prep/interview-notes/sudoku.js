@@ -60,7 +60,6 @@ function rowsValid(board) {
 }
 
 function colsValid(board) {
-
   for (let c = 0; c < board.length; c++) {
     let col = []
     for (let r = 0; r < board.length; r++) {
