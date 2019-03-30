@@ -4,7 +4,7 @@ class AStarLifeLong {
   constructor(matrix = [[]], start = [0, 0], goal) {
     this.matrix = matrix;
     this.goal = goal;
-    this.matrix[goal[0]][goal[1]] = 0;
+    this.matrix[goal[0]][goal[1]] = 0; // validate that 
     this.start = start;
     this.heuristicMap = this.generateKeys(goal)
   }
