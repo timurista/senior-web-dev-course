@@ -1,19 +1,3 @@
-class VEBNode {
-  constructor(cluster = [], summary = null, u) {
-    this.custer = cluster;
-    this.summary = summary;
-
-    // let u_sqrt = Math.sqrt(u);
-    // this.high = Math.floor(x / u_sqrt)
-    // this.low = x % u_sqrt;
-    // this.index(x,y) = x*u_sqrt + y;
-
-  }
-  member(V, x) {
-
-  }
-}
-
 class VEBTree {
   constructor(u) {
     this.min = null;
@@ -21,15 +5,17 @@ class VEBTree {
     this.u = this.getHeapSize(u);
 
     if (u > 2) {
+      // console.log(u)
       this.clusters = this.getClusters(this.high(this.u))
+      // console.log(this.clusters)
       this.summary = null;
     }
 
   }
   getHeapSize(u) {
     let size = 2;
-    while (currSize < u) {
-      size ** 2;
+    while (size < u) {
+      size = size ** 2;
     }
     return size;
   }
@@ -56,19 +42,19 @@ class VEBTree {
     } else if (this.u <= 2) {
       return false;
     } else {
-      let cluser_of_x = this.clusters(this.high(x))
+      let cluser_of_x = this.clusters[this.high(x)]
       if (cluser_of_x) return cluser_of_x.isMember(this.low(x))
       return false;
     }
   }
 
   insertEmtpy(x) {
-
     this.min = x;
     this.max = x;
   }
 
   insert(x) {
+    // console.log('insert x', x)
     if (this.min === null) {
       this.insertEmtpy(x)
     }
@@ -78,7 +64,7 @@ class VEBTree {
       this.min = temp;
     }
     if (this.u > 2) {
-      cluser_idx = this.high(x)
+      let cluser_idx = this.high(x)
 
       if (this.clusters[cluser_idx] === null) {
         this.clusters[cluser_idx] = new VEBTree(this.high(this.u))
@@ -89,6 +75,12 @@ class VEBTree {
       if (this.clusters[cluser_idx].min === null) {
         this.clusters[cluser_idx].insertEmtpy(this.low(x))
       }
+      else {
+        this.clusters[cluser_idx].insert(this.low(x))
+      }
+    }
+    if (x > this.max) {
+      this.max = x;
     }
   }
 
@@ -140,3 +132,37 @@ class VEBTree {
   }
 
 }
+
+// BENCH MARKING
+
+let tree = new VEBTree(10000 ** 2);
+console.time('insert')
+for (i = 1; i <= 100000; i++) {
+  tree.insert(i)
+}
+console.timeEnd('insert')
+
+console.time('query')
+for (i = 1; i <= 100000; i++) {
+  tree.isMember(i)
+}
+console.timeEnd('query')
+
+
+
+let normalArr = []
+console.time('insert normal')
+for (i = 1; i <= 100000; i++) {
+  normalArr.push(i)
+}
+console.timeEnd('insert normal')
+console.time('query normal')
+for (i = 1; i <= 100000; i++) {
+  normalArr.includes(i) > -1
+}
+console.timeEnd('query normal')
+
+
+
+
+console.log(tree.min, tree.max, tree.u)
