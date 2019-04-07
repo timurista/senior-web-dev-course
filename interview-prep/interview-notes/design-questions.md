@@ -55,8 +55,18 @@ you get a shortlink back
 
 service deletes expired pastes
 
+## Bottlenecks
+1) Benchmark / Load test
+2) Profile
+
+HitCounter
+  - extract_url. Gets url from log line
+  - mapper, emit key value pairs of form date, url
+  - reducer, yield key sum(values)
 
 
+Load Balancer, vs Master-Slave Replicas and tradeoffs.
+Fanout service --> user graph, search, notification
 
 
 step 1 website users enter the alias for an existing url. You get (existing url, alias, initial date, ending date)
