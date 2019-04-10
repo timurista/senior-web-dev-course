@@ -29,7 +29,7 @@ string longestPalindrome(string s)
       end = i + len / 2;
     }
   }
-  return s.substr(start, end + 1);
+  return s.substr(start, end);
 }
 
 int main()
