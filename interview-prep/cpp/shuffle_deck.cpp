@@ -14,7 +14,7 @@ void shuffle(int card[], int n)
   {
     // Random for remaining positions.
     int r = i + (rand() % (52 - i));
-    cout << "r " + r;
+    cout << "r " << r << " " << rand() << "\n";
 
     swap(card[i], card[r]);
   }
