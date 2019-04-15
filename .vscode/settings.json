@@ -3,5 +3,8 @@
   "editor.acceptSuggestionOnCommitCharacter": false,
   "python.linting.pylintEnabled": false,
   "editor.tabSize": 2,
-  "editor.parameterHints.enabled": false
+  "editor.parameterHints.enabled": false,
+  "files.associations": {
+    "iostream": "cpp"
+  }
 }
