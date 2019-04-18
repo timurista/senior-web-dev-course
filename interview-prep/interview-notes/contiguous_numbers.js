@@ -36,9 +36,9 @@ function max_contig_numbers(arr) {
   let max = 0;
   let sum = 0;
   for (let i = 0; i < arr.length; i++) {
+    console.log(arr[i], sum, max)
     sum += arr[i]
-    // console.log(arr[i], sum)
-    if (max < sum) {
+    if (sum > max) {
       max = sum
     } else {
       sum = 0;
@@ -47,6 +47,11 @@ function max_contig_numbers(arr) {
   return max
 }
 
-console.log(max_contig_numbers([-1, 1, 2]))
-console.log(max_contig_numbers([0, 1]))
-console.log(max_contig_numbers([2, -8, 3, -2, 4, -10]))
+const window = (time1, time2) => {
+  console.log(time1, time2)
+  if (time1.s >= time2)
+}
+
+console.log(max_contig_numbers([-1, 1, 2, -1, -2]))
+// console.log(max_contig_numbers([0, 1]))
+// console.log(max_contig_numbers([2, -8, 3, -2, 4, -10]))
