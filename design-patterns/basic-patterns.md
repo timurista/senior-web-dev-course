@@ -17,3 +17,4 @@ Domain model captures an enttiy like "a Contract" or "a Product" and encapsulate
 
 
 
+
